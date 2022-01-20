@@ -8,7 +8,7 @@ import {
   ScrollRestoration
 } from "remix";
 import tailwindUrl from './styles/tailwind.css'
-import { useEffect, useRef } from "react";
+import { useEffect, useState } from "react";
 import gsap from "gsap";
 
 export function meta() {
@@ -21,17 +21,30 @@ export function links() {
 
 
 export default function App() {
+  const [darkMode, setDarkMode] = useState(false)  
+
+  useEffect(() => {
+    if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+      setDarkMode(true)
+    } else {
+      setDarkMode(false)
+    }
+  },[])
+
+  useEffect(() => {
+    darkMode ? localStorage.setItem('theme', 'dark') : localStorage.removeItem('theme')
+  }, [darkMode])
   
   return (
-    <html lang="en">
+    <html lang="en" className={`${darkMode ? 'dark' : ''}`}>
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width,initial-scale=1" />
         <Meta />
         <Links />
       </head>
-      <body className= "bg-neutral-200">
-        <Navbar />
+      <body className= "transition-colors duration-1000 delay-300 bg-neutral-200 dark:bg-slate-900">
+        <Navbar darkMode={() => setDarkMode(!darkMode)} />
         <Outlet />
         <ScrollRestoration />
         <Scripts />

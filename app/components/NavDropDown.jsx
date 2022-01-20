@@ -2,8 +2,6 @@ import { Link } from "remix"
 import gsap from 'gsap'
 import {useEffect, useRef} from 'react'
 import {CgSearch, CgController, CgChevronDown, CgSun, CgSupport} from 'react-icons/cg'
-import {FaRegLightbulb} from 'react-icons/fa'
-
 
 function NavDropDown({isOpen}) {
   const navRef = useRef()
@@ -68,12 +66,6 @@ function NavDropDown({isOpen}) {
             <p className="text-lg">Create Profile</p>
           </Link>
         </li>
-        <li className="flex justify-end py-3 opacity-0">
-          <button className="p-2 -mr-6 bg-black rounded-full ">
-           <FaRegLightbulb className="text-2xl text-green-200"/>
-          </button>
-        </li>
-   
       </ul>
     </div>
   )
