@@ -1,17 +1,18 @@
-import { useActionData, Form } from "remix"
-import clsx from "clsx"
-import RegisterForm from "~/components/RegisterForm"
-import UserDisplay from "~/components/UserDisplay"
-import { useLoaderData } from "remix"
-import { redirect } from "remix"
-import AlertPop from "~/components/AlertPop"
+import gsap from "gsap"
+import { useEffect, useRef } from 'react'
+import animations from '../styles/animations.css'
+import HeroDark from '../components/HeroDark'
 
-
+export function links() {
+  return [{rel: 'stylesheet', href: animations}]
+}
+  
   function Index() {
-    return (
-      <div>
-        
-      </div>
+
+    return (    
+        <div className="flex flex-col items-center justify-center mt-96">
+          <HeroDark />
+        </div>
     )
   }
   

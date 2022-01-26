@@ -1,4 +1,4 @@
-import Navbar from "./components/Navbar";
+import Navbar from "./components/Navbar"
 import {
   Links,
   LiveReload,
@@ -9,7 +9,6 @@ import {
 } from "remix";
 import tailwindUrl from './styles/tailwind.css'
 import { useEffect, useState } from "react";
-import gsap from "gsap";
 
 export function meta() {
   return { title: "New Remix App" };
@@ -26,13 +25,14 @@ export default function App() {
   useEffect(() => {
     if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
       setDarkMode(true)
-    } else {
+    } 
+    if (localStorage.theme === 'light' || (!('theme' in localStorage) && window.matchMedia('prefers-color-scheme: light)').matches)) {
       setDarkMode(false)
     }
   },[])
 
   useEffect(() => {
-    darkMode ? localStorage.setItem('theme', 'dark') : localStorage.removeItem('theme')
+    darkMode ? localStorage.setItem('theme', 'dark') : localStorage.setItem('theme', 'light')
   }, [darkMode])
   
   return (
@@ -40,10 +40,13 @@ export default function App() {
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width,initial-scale=1" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet" />
         <Meta />
         <Links />
       </head>
-      <body className= "transition-colors duration-1000 delay-300 bg-neutral-200 dark:bg-slate-900">
+      <body className= "transition-colors duration-1000 delay-300 font-mont bg-emerald-50 dark:bg-slate-900">
         <Navbar darkMode={() => setDarkMode(!darkMode)} />
         <Outlet />
         <ScrollRestoration />
