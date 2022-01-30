@@ -9,6 +9,7 @@ import {
 } from "remix";
 import tailwindUrl from './styles/tailwind.css'
 import { useEffect, useState } from "react";
+import mongoose from 'mongoose'
 
 export function meta() {
   return { title: "New Remix App" };
@@ -18,6 +19,13 @@ export function links() {
   return [{rel: 'stylesheet', href: tailwindUrl}]
 }
 
+export async function loader() {
+  mongoose.connect('mongodb://localhost/screen_time', {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+  })
+   return null
+ }
 
 export default function App() {
   const [darkMode, setDarkMode] = useState(false)  
