@@ -4,4 +4,4 @@ node_modules
 /build
 /public/build
 .env
-app\shows.db.json
+/app/shows.db.json
