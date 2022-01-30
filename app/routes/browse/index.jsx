@@ -1,7 +1,6 @@
 import { useLoaderData } from 'remix'
 import ShowDisplayCard from '~/components/ShowDisplayCard';
-import Shows from '../models/Shows'
-import animations from '../styles/animations'
+import Shows from '~/models/Shows'
 
 export async function loader() {
   const shows = await Shows.find({})

@@ -1,4 +1,5 @@
 import { AiOutlineBuild } from 'react-icons/ai'
+import { RiArrowUpDownFill } from 'react-icons/ri'
 import { BsCardText, BsSuitHeart, BsSuitHeartFill, BsInfoCircleFill } from 'react-icons/bs'
 import { useState } from 'react'
 import { Link } from 'remix'
@@ -35,15 +36,15 @@ function ShowDisplayCard({show}) {
         <div className='flex items-center justify-center'>
           <button 
             onClick={() => setHideFocus(!hideFocus)}
-            className='px-4 py-2 rounded-bl-lg'
+            className='px-3 py-2 rounded-bl-lg'
           >
-            <AiOutlineBuild className='text-2xl text-slate-900 dark:text-white' /> 
+            <RiArrowUpDownFill className='text-2xl text-slate-900 dark:text-white' /> 
           </button>
           <Link 
             to={`${show.title.replace(" ", "-")}`}
-            className='px-4 py-2'
+            className='px-3 py-2'
           >
-            <BsInfoCircleFill className='text-2xl text-slate-900 dark:text-white'/>
+            <BsInfoCircleFill className='text-2xl text-slate-900 dark:text-emerald-300'/>
           </Link>
         </div>
         <button 
@@ -52,9 +53,9 @@ function ShowDisplayCard({show}) {
         >
           {isLiked 
             ? 
-              <BsSuitHeartFill className='text-2xl text-slate-800 dark:text-white'/> 
+              <BsSuitHeartFill className='text-2xl text-red-500 dark:text-yellow-300'/> 
             :
-              <BsSuitHeart className='text-2xl text-slate-900 dark:text-white'/>
+              <BsSuitHeart className='text-2xl text-orange-400 dark:text-yellow-300'/>
           }
         </button>
       </div>
@@ -64,3 +65,6 @@ function ShowDisplayCard({show}) {
 }
 
 export default ShowDisplayCard;
+
+// TODO: add a color to each show in db that corresponds to the image, then style
+// the HEART icon based on this color.
