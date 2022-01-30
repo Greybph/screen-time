@@ -9,8 +9,15 @@ export async function loader() {
 function about() {
   const shows = useLoaderData()
   return (
-    <div className='border border-green-500 '>
-      <h1>{shows[0].title}</h1>
+    <div className='mt-24'>
+      {shows.map(show => (
+        <>
+          <img src={show.image} alt="a" className='w-56' />
+          <h1>{show.focus.map(f => (
+            <h2>{f}{" "}</h2>
+          ))}</h1>
+        </>
+      ))}
     </div>
   )
 }

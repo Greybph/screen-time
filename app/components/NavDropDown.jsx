@@ -47,11 +47,11 @@ function NavDropDown({isOpen, onNavigate}) {
             <CgChevronDown className="mr-4"/>
           </Link>
         </li>
-        <li title="Contact" className="pr-3 opacity-0">
-          <Link to='/contact' onClick={onNavigate} className="flex items-center justify-between py-3 border-b cursor-pointer">
+        <li title="Browse" className="pr-3 opacity-0">
+          <Link to='/browse' onClick={onNavigate} className="flex items-center justify-between py-3 border-b cursor-pointer">
             <span className="flex items-center justify-center">
               <CgSun className="text-4xl"/>
-              <span className="pl-2 text-lg font-medium">Contact</span>
+              <span className="pl-2 text-lg font-medium">Browse</span>
             </span>
             <CgChevronDown className="mr-4" />
           </Link>
