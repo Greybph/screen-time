@@ -10,7 +10,7 @@ function Navbar({darkMode}) {
   
   return (
     <>
-      <nav className="fixed top-0 z-50 flex justify-between w-screen pt-3 pb-3 pl-4 pr-3 mt-3 mb-16 bg-transparent">
+      <nav className="fixed top-0 z-50 flex justify-between w-screen pt-3 pb-3 pl-4 pr-3 mt-3 bg-transparent">
         <Link to='' onClick={() => setMenuOpen(false)} className="text-xl font-extrabold transition-colors duration-700 delay-500 text-slate-900 dark:text-emerald-300 font-mont">screenTime</Link>
        
         <ul className="flex items-center lg:hidden">
