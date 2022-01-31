@@ -1,0 +1,71 @@
+almas way
+  light: text-orange-400 , text-purple-600
+  dark: text-orange-400
+
+arthur
+  light: text-red-500, text-blue-600
+  dark: text-red-500
+
+cat in hat
+  light: text-yellow-400
+  dark: text-yellow-300
+
+clifford
+  light: text-slate-700
+  dark: text-teal-100
+
+curious george
+  light: text-red-500
+  dark: text-red-500
+
+cyberchase
+  light: text-purple-900
+  dark: text-violet-400
+
+daniel tiger
+  light: text-amber-600
+  dark: text-amber-300
+
+dinosaur train
+  light: text-blue-500
+  dark: text-blue-500
+
+donkey hodie
+  light: text-blue-500
+  dark: text-blue-500
+
+elinor wonders why
+  light: text-green-900
+  dark: text-white
+
+elinor wonders why
+  light: text-amber-500
+  dark: text-amber-500
+
+lets go luna
+  light: text-fuchsia-600
+  dark: text-fuchsia-600
+
+molly of denali
+  light: text-sky-800
+  dark: text-sky-300
+
+nature cat
+  light: text-red-600
+  dark: text-red-600
+
+odd squad
+  light: text-purple-600
+  dark: text-purple-600
+
+peg + cat
+  light: text-indigo-800
+  dark: text-indigo-500
+
+pinkalicious
+  light: text-pink-500
+  dark: text-pink-500
+
+red jet go
+  light: text-indigo-900
+  dark: text-pink-500

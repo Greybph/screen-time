@@ -3,11 +3,20 @@ import { RiArrowUpDownFill } from 'react-icons/ri'
 import { BsCardText, BsSuitHeart, BsSuitHeartFill, BsInfoCircleFill } from 'react-icons/bs'
 import { useState } from 'react'
 import { Link } from 'remix'
+import clsx from 'clsx'
+
 
 function ShowDisplayCard({show}) {
   const [isLiked, setIsLiked] = useState(false)
   const [hideFocus, setHideFocus] = useState(true)
+  const focuses = show?.focus
+  const {light, dark} = show.color
+  const a = light
+  const c = clsx(
+    a, 'text-2xl'
+  )
   
+
   return (
     <div className="flex flex-col mb-10">
       <div className='relative'>
@@ -15,16 +24,16 @@ function ShowDisplayCard({show}) {
         hidden={hideFocus} 
         className='absolute w-full h-full bg-white rounded-t-lg dark:bg-slate-800'
         >
-          <ul className='flex flex-col items-center justify-center mt-4'>
-            {show.focus.map(f => 
+          {/* <ul className='flex flex-col items-center justify-center mt-4'>
+            {focuses.map(focus => 
               <li 
                 key={show._id}
                 className='text-xl text-slate-900 dark:text-white'
               >
-                {f}
+                {focus}
               </li>
             )}
-          </ul>
+          </ul> */}
         </div>
         <img 
           src={show.image} 
@@ -44,7 +53,7 @@ function ShowDisplayCard({show}) {
             to={`${show.title.replace(" ", "-")}`}
             className='px-3 py-2'
           >
-            <BsInfoCircleFill className='text-2xl text-slate-900 dark:text-emerald-300'/>
+            <BsInfoCircleFill className='text-2xl text-slate-900 dark:text-white'/>
           </Link>
         </div>
         <button 
@@ -53,9 +62,9 @@ function ShowDisplayCard({show}) {
         >
           {isLiked 
             ? 
-              <BsSuitHeartFill className='text-2xl text-red-500 dark:text-yellow-300'/> 
+              <BsSuitHeartFill className={c}/> 
             :
-              <BsSuitHeart className='text-2xl text-orange-400 dark:text-yellow-300'/>
+              <BsSuitHeart className='text-2xl text-gray-500 dark:text-white'/>
           }
         </button>
       </div>

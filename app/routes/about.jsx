@@ -11,12 +11,12 @@ function about() {
   return (
     <div className='mt-24'>
       {shows.map(show => (
-        <>
+        <div key={show._id}>
           <img src={show.image} alt="a" className='w-56' />
           <h1>{show.focus.map(f => (
             <h2>{f}{" "}</h2>
           ))}</h1>
-        </>
+        </div>
       ))}
     </div>
   )
