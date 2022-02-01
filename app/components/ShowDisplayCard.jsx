@@ -1,22 +1,13 @@
-import { AiOutlineBuild } from 'react-icons/ai'
 import { RiArrowUpDownFill } from 'react-icons/ri'
-import { BsCardText, BsSuitHeart, BsSuitHeartFill, BsInfoCircleFill } from 'react-icons/bs'
+import { BsInfoCircleFill } from 'react-icons/bs'
 import { useState } from 'react'
 import { Link } from 'remix'
-import clsx from 'clsx'
-
+import LikeButton from './LikeButton'
 
 function ShowDisplayCard({show}) {
-  const [isLiked, setIsLiked] = useState(false)
   const [hideFocus, setHideFocus] = useState(true)
-  const focuses = show?.focus
-  const {light, dark} = show.color
-  const a = light
-  const c = clsx(
-    a, 'text-2xl'
-  )
-  
-
+  const focuses = show.focus
+ 
   return (
     <div className="flex flex-col mb-10">
       <div className='relative'>
@@ -24,16 +15,16 @@ function ShowDisplayCard({show}) {
         hidden={hideFocus} 
         className='absolute w-full h-full bg-white rounded-t-lg dark:bg-slate-800'
         >
-          {/* <ul className='flex flex-col items-center justify-center mt-4'>
-            {focuses.map(focus => 
+          <ul className='flex flex-col items-center justify-center mt-4'>
+            {focuses.map((focus, idx )=> 
               <li 
-                key={show._id}
+                key={idx}
                 className='text-xl text-slate-900 dark:text-white'
               >
                 {focus}
               </li>
             )}
-          </ul> */}
+          </ul>
         </div>
         <img 
           src={show.image} 
@@ -50,26 +41,15 @@ function ShowDisplayCard({show}) {
             <RiArrowUpDownFill className='text-2xl text-slate-900 dark:text-white' /> 
           </button>
           <Link 
-            to={`${show.title.replace(" ", "-")}`}
+            to={`${show.title.replaceAll(" ", "-")}`}
             className='px-3 py-2'
           >
             <BsInfoCircleFill className='text-2xl text-slate-900 dark:text-white'/>
           </Link>
         </div>
-        <button 
-          className='px-4 py-2 rounded-br-lg'
-          onClick={() => setIsLiked(!isLiked)}
-        >
-          {isLiked 
-            ? 
-              <BsSuitHeartFill className={c}/> 
-            :
-              <BsSuitHeart className='text-2xl text-gray-500 dark:text-white'/>
-          }
-        </button>
+        <LikeButton />
       </div>
     </div>
-
   )
 }
 

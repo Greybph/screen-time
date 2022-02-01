@@ -12,10 +12,15 @@ function Browse() {
   
   return (
     <div className='flex flex-col items-center justify-center px-10 mt-24'>
-      <h3 className='pb-4 text-2xl leading-normal text-black dark:text-white'>Discover the shows that fit your child's needs.</h3>
-      {/* <ShowDisplayCard show={shows[0]} /> */}
+      <h3 
+        className='pb-4 text-2xl leading-normal text-black dark:text-white'
+      >
+        Discover the shows that fit your child's needs.
+      </h3>
       <ShowDisplayCard show={shows[1]} />
-      <ShowDisplayCard show={shows[2]} />
+      <ShowDisplayCard show={shows[4]} />
+        
+     
     </div>
   )
 }
