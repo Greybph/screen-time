@@ -1,29 +1,50 @@
 import {Form} from 'remix'
+import { useState } from 'react'
+import {BsFillCheckCircleFill} from 'react-icons/bs'
 
-function RegisterForm() {
+function RegisterForm({onClick}) {
+  const [minLength, setMinLength] = useState(false)
 
-
+  function handleChange(e) {
+    e.target.value.length < 4 ? setMinLength(false) : setMinLength(true)
+  }
+  
   return (
-    <Form method="POST">
-      <div className="w-screen max-w-sm px-10 py-8 shadow-md bg-white-100 rounded-xl">
+    <div>
+      <Form method="post" className="max-w-sm px-10 py-8 mt-24 bg-transparent">
+        <input type="hidden" name="_action" value='register' />
         <div className="space-y-4">
-          <h1 className="text-2xl font-semibold text-center text-gray-600">Register</h1>
+          <h1 className="text-2xl text-center text-slate-900">Sign-up</h1>
           <div>
-            <label htmlFor="email" className="block mb-1 font-semibold text-gray-600">Username</label>
-            <input name="username" type="text" className="w-full px-4 py-2 rounded-md outline-none bg-indigo-50" />
+            <label htmlFor="username" className="block mb-1 font-semibold text-gray-600">Username</label>
+            <input name="username" type="text" className="w-full px-4 py-2 bg-gray-300 rounded-md outline-slate-700" />
           </div>
           <div>
             <label htmlFor="email" className="block mb-1 font-semibold text-gray-600">Email</label>
-            <input name="email" type="text" className="w-full px-4 py-2 rounded-md outline-none bg-indigo-50" />
+            <input name="email" type="text" className="w-full px-4 py-2 bg-gray-300 rounded-md outline-slate-700" />
           </div>
-          <div>
-            <label htmlFor="email" className="block mb-1 font-semibold text-gray-600">Password</label>
-            <input name="password" type="password" className="w-full px-4 py-2 rounded-md outline-none bg-indigo-50" />
+          <div className='relative'>
+            <label htmlFor="password" className="block mb-1 font-semibold text-gray-600">Password</label>
+            <input 
+              name="password" type="password" minLength='4'
+              onChange={handleChange}
+              className="w-full px-4 py-2 bg-gray-300 rounded-md outline-slate-700"
+              />
+            <BsFillCheckCircleFill
+              className={`${minLength ? '' : 'opacity-0'} absolute text-xl text-slate-900 top-10 -right-8`}
+            />
           </div>
         </div>
-        <button className="w-full py-2 mt-4 text-lg tracking-wide text-indigo-100 rounded-md bg-gradient-to-tr from-pink-600 to-purple-600">Register</button>
-      </div>
-  </Form>
+        <button type='submit' className="w-full py-2 mt-4 text-lg tracking-wide text-white rounded-md bg-slate-900">Done</button>
+      </Form>
+      <p className='text-center text-gray-600'>Already have an account?</p>
+        <p 
+        className='text-center underline cursor-pointer text-slate-800'
+        onClick={onClick}
+        >
+          Login
+        </p>
+    </div>
   )
 }
 

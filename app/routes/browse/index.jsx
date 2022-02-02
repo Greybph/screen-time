@@ -17,8 +17,11 @@ function Browse() {
       >
         Discover the shows that fit your child's needs.
       </h3>
-      <ShowDisplayCard show={shows[1]} />
-      <ShowDisplayCard show={shows[4]} />
+      {shows && <>
+        <ShowDisplayCard show={shows[1]} />
+        <ShowDisplayCard show={shows[4]} />
+      </>
+      }
         
      
     </div>

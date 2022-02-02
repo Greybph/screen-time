@@ -1,9 +1,9 @@
-import {useState} from 'react'
+import {useState, useEffect} from 'react'
 import { BsSuitHeart, BsSuitHeartFill } from 'react-icons/bs'
 
-function LikeButton() {
-  const [isLiked, setIsLiked] = useState(false)
- 
+function LikeButton({title}) {
+  const [isLiked, setIsLiked] = useState()
+
   return (
   <button 
     className='px-4 py-2 rounded-br-lg'
@@ -11,9 +11,9 @@ function LikeButton() {
   >
     {isLiked 
       ? 
-        <BsSuitHeartFill className='text-2xl text-red-600 dark:text-yellow-300' /> 
+        <BsSuitHeartFill className='text-2xl text-slate-900 dark:text-white' /> 
       :
-        <BsSuitHeart className='text-2xl text-red-800 dark:text-white'/>
+        <BsSuitHeart className='text-2xl text-slate-900 dark:text-white'/>
     }
   </button>
   )

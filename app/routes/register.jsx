@@ -1,5 +1,4 @@
 import RegisterForm from '../components/RegisterForm'
-import AlertPop from '../components/AlertPop'
 import { useActionData } from 'remix'
 
 export async function action({request}) {

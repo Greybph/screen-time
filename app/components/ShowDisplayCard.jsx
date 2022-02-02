@@ -7,7 +7,7 @@ import LikeButton from './LikeButton'
 function ShowDisplayCard({show}) {
   const [hideFocus, setHideFocus] = useState(true)
   const focuses = show.focus
- 
+  
   return (
     <div className="flex flex-col mb-10">
       <div className='relative'>
@@ -26,11 +26,13 @@ function ShowDisplayCard({show}) {
             )}
           </ul>
         </div>
-        <img 
-          src={show.image} 
-          alt={`${show.title} title image`} 
-          className={`rounded-t-lg w-72 ${!hideFocus ? 'opacity-0': ''}`}
-        />
+        <Link to={`${show.title.replaceAll(" ", "-")}`}>
+          <img 
+            src={show.image} 
+            alt={`${show.title} title image`} 
+            className={`rounded-t-lg w-72 ${!hideFocus ? 'opacity-0': ''}`}
+          />
+        </Link>
       </div>
       <div className='flex justify-between w-full bg-white rounded-b-lg shadow dark:bg-slate-800 '>
         <div className='flex items-center justify-center'>
@@ -40,14 +42,14 @@ function ShowDisplayCard({show}) {
           >
             <RiArrowUpDownFill className='text-2xl text-slate-900 dark:text-white' /> 
           </button>
-          <Link 
+          {/* <Link 
             to={`${show.title.replaceAll(" ", "-")}`}
             className='px-3 py-2'
           >
             <BsInfoCircleFill className='text-2xl text-slate-900 dark:text-white'/>
-          </Link>
+          </Link> */}
         </div>
-        <LikeButton />
+        <LikeButton title={show.title} />
       </div>
     </div>
   )
