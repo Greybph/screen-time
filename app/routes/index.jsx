@@ -12,4 +12,3 @@ import HeroDark from '../components/HeroDark'
   export default Index
   
 
-// https://langmobile.com/en/

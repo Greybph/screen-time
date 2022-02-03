@@ -34,21 +34,13 @@ function ShowDisplayCard({show}) {
           />
         </Link>
       </div>
-      <div className='flex justify-between w-full bg-white rounded-b-lg shadow dark:bg-slate-800 '>
-        <div className='flex items-center justify-center'>
+      <div className='flex justify-between bg-white rounded-b-lg shadow dark:bg-slate-800 '>
           <button 
             onClick={() => setHideFocus(!hideFocus)}
-            className='px-3 py-2 rounded-bl-lg'
+            className='px-3 py-2 rounded-bl-lg '
           >
             <RiArrowUpDownFill className='text-2xl text-slate-900 dark:text-white' /> 
           </button>
-          {/* <Link 
-            to={`${show.title.replaceAll(" ", "-")}`}
-            className='px-3 py-2'
-          >
-            <BsInfoCircleFill className='text-2xl text-slate-900 dark:text-white'/>
-          </Link> */}
-        </div>
         <LikeButton title={show.title} />
       </div>
     </div>

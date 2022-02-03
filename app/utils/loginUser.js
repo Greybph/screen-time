@@ -10,9 +10,17 @@ export default async function loginUser(values) {
   } 
   
   if (hasher.verify(values.password, user.password)) {
-    return redirect('/dashboard')
+
+    return redirect('/dashboard', {
+      headers: {
+        "Set-Cookie": user._id
+      }
+    })
+     
   } else {
+    
     return {error: "Incorrect username or password"}
+
   }
 
 }

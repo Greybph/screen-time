@@ -4,7 +4,6 @@ import RegisterForm from '~/components/RegisterForm'
 import LoginForm from '~/components/LoginForm'
 import saveUser from '~/utils/saveUser'
 import loginUser from '~/utils/loginUser'
-import FlashMessage from 'react-flash-message'
 
 export async function action({request}) {
   const data = await request.formData()
@@ -17,7 +16,6 @@ export async function action({request}) {
   if (_action === 'login') {
     return loginUser(values)
   }
-
 }
 
 function Account() {
