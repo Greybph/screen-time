@@ -4,7 +4,7 @@ import ShowDisplayCard from '~/components/ShowDisplayCard';
 import Shows from '~/models/Shows'
 import Select from 'react-select'
 import focusOptions from '~/focusOptions'
-import { set } from 'mongoose';
+import FocusSelect from '~/components/FocusSelect'
 
 export async function loader() {
   const shows = await Shows.find({})
@@ -13,17 +13,7 @@ export async function loader() {
 
 function Browse() {
   const shows = useLoaderData()
-  const [filterFocus, setFilterFocus] = useState()
-  
-
-  function handleFilter(e) {
-       setFilterFocus(e)
-  }
-
-  function compareFocus(show, target) {
-    return target.every(f => show.focus.includes(f.value))
-  }
-
+ 
   return (
     <div className='flex flex-col items-center justify-center px-10 mt-32'>
       <h3 
@@ -31,15 +21,8 @@ function Browse() {
       >
         Discover the shows that fit your child's needs.
       </h3>
-      <Select 
-        onChange={handleFilter} isMulti options={focusOptions}
-        className="w-full basic-multi-select"
-    classNamePrefix="select"
-      />
-      {filterFocus?.length ? shows.map(show => {
-        if (compareFocus(show, filterFocus)) return <ShowDisplayCard key={show._id} show={show} />
-        else return ''
-      }) : ''
+      {shows &&
+        <FocusSelect shows={shows} />
       }
     </div>
   )

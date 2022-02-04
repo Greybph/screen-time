@@ -1,5 +1,4 @@
 import { RiArrowUpDownFill } from 'react-icons/ri'
-import { BsInfoCircleFill } from 'react-icons/bs'
 import { useState } from 'react'
 import { Link } from 'remix'
 import LikeButton from './LikeButton'
@@ -30,7 +29,7 @@ function ShowDisplayCard({show}) {
           <img 
             src={show.image} 
             alt={`${show.title} title image`} 
-            className={`rounded-t-lg w-72 ${!hideFocus ? 'opacity-0': ''}`}
+            className={`rounded-t-lg w-full ${!hideFocus ? 'opacity-0': ''}`}
           />
         </Link>
       </div>
