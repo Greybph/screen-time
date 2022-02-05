@@ -1,32 +1,32 @@
 import {useState} from 'react'
 import Select from 'react-select'
-import focusOptions from '~/focusOptions'
+import ageOptions from '~/ageOptions'
 import ShowDisplayCard from './ShowDisplayCard'
 
-function FocusSelect({shows}) {
-  const [focusFilter, setFocusFilter] = useState()
+function AgeSelect({shows}) {
+  const [ageFilter, setAgeFilter] = useState()
 
   function handleFilter(e) {
-    setFocusFilter(e)
+    setAgeFilter(e)
   }
 
   function compareFocus(show, target) {
-    return target.every(f => show.focus.includes(f.value))
+    return target.every(a => show.ages.includes(a.value))
   }
 
   return (
     <div className='w-full'>
       <Select 
-        placeholder="Search by focus..."
+        placeholder="Search by age..."
         onChange={handleFilter} 
         isMulti 
         isSearchable={false}
         captureMenuScroll
-        options={focusOptions}
+        options={ageOptions}
         className="w-full basic-multi-select"
       />
-      {focusFilter?.length ? shows.map(show => {
-        if (compareFocus(show, focusFilter)) 
+      {ageFilter?.length ? shows.map(show => {
+        if (compareFocus(show, ageFilter)) 
           return <ShowDisplayCard key={show._id} show={show} />
           else return ''
       }) : ''
@@ -35,4 +35,4 @@ function FocusSelect({shows}) {
   )
 }
 
-export default FocusSelect
+export default AgeSelect

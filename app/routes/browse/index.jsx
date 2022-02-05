@@ -1,10 +1,7 @@
-import { Form, useLoaderData } from 'remix'
-import { useState, useEffect } from 'react';
-import ShowDisplayCard from '~/components/ShowDisplayCard';
+import { useLoaderData } from 'remix'
 import Shows from '~/models/Shows'
-import Select from 'react-select'
-import focusOptions from '~/focusOptions'
 import FocusSelect from '~/components/FocusSelect'
+import AgeSelect from '~/components/AgeSelect'
 
 export async function loader() {
   const shows = await Shows.find({})
@@ -21,9 +18,8 @@ function Browse() {
       >
         Discover the shows that fit your child's needs.
       </h3>
-      {shows &&
         <FocusSelect shows={shows} />
-      }
+        <AgeSelect shows={shows} />
     </div>
   )
 }
