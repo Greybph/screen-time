@@ -10,14 +10,14 @@ function HeroDark() {
     </h1>
     <Link to='account'>
       <button 
-        className='px-10 py-4 mt-10 prose-xl text-white transition-colors duration-700 delay-500 rounded-full dark:bg-white dark:text-slate-900 hover:bg-slate-800 bg-slate-900'
+        className='px-10 py-4 mt-10 tracking-wide prose-xl text-white transition-colors duration-700 delay-500 rounded-full dark:bg-white dark:text-slate-900 hover:bg-slate-800 bg-slate-900'
       >
         Get Started
       </button><br />
     </Link>
     <Link to='/browse'>
       <button 
-        className='py-3 mt-2 prose-xl transition-colors duration-700 delay-500 border-4 rounded-full px-14 text-slate-900 hover:bg-slate-300 border-slate-900 dark:border-emerald-300 dark:text-white'
+        className='py-3 mt-2 tracking-wide prose-xl transition-colors duration-700 delay-500 border-4 rounded-full px-14 text-slate-900 hover:bg-slate-300 border-slate-900 dark:border-emerald-300 dark:text-white'
       >
         Browse
       </button>

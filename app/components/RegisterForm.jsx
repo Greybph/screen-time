@@ -11,20 +11,20 @@ function RegisterForm({onClick}) {
   
   return (
     <div>
-      <Form method="post" className="max-w-sm px-10 py-8 mt-24 bg-transparent">
+      <Form method="post" className="max-w-sm px-10 py-8 mx-auto mt-24 bg-transparent">
         <input type="hidden" name="_action" value='register' />
         <div className="space-y-4">
-          <h1 className="text-2xl text-center text-slate-900">Sign-up</h1>
+          <h1 className="text-2xl text-center text-slate-900 dark:text-white">Sign-up</h1>
           <div>
-            <label htmlFor="username" className="block mb-1 font-semibold text-gray-600">Username</label>
+            <label htmlFor="username" className="block mb-1 font-semibold text-gray-600 dark:text-slate-500">Username</label>
             <input name="username" type="text" className="w-full px-4 py-2 bg-gray-300 rounded-md outline-slate-700" />
           </div>
           <div>
-            <label htmlFor="email" className="block mb-1 font-semibold text-gray-600">Email</label>
+            <label htmlFor="email" className="block mb-1 font-semibold text-gray-600 dark:text-slate-500">Email</label>
             <input name="email" type="text" className="w-full px-4 py-2 bg-gray-300 rounded-md outline-slate-700" />
           </div>
           <div className='relative'>
-            <label htmlFor="password" className="block mb-1 font-semibold text-gray-600">Password</label>
+            <label htmlFor="password" className="block mb-1 font-semibold text-gray-600 dark:text-slate-500">Password</label>
             <input 
               name="password" type="password" minLength='4'
               onChange={handleChange}
@@ -35,11 +35,11 @@ function RegisterForm({onClick}) {
             />
           </div>
         </div>
-        <button type='submit' className="w-full py-2 mt-4 text-lg tracking-wide text-white rounded-md bg-slate-900">Done</button>
+        <button type='submit' className="w-full py-2 mt-4 text-lg tracking-wide text-white rounded-md bg-slate-900 dark:bg-slate-700">Done</button>
       </Form>
-      <p className='text-center text-gray-600'>Already have an account?</p>
+      <p className='text-center text-gray-600 dark:text-slate-500'>Already have an account?</p>
         <p 
-        className='text-center underline cursor-pointer text-slate-800'
+        className='text-center underline cursor-pointer text-slate-800 dark:text-white'
         onClick={onClick}
         >
           Login

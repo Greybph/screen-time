@@ -24,8 +24,8 @@ function Account() {
 
   return (
   
-    <div className='mt-32'>
-      <h1 className='px-4 text-3xl text-center'>
+    <div className='mx-auto mt-32'>
+      <h1 className='px-4 text-3xl text-center dark:text-white'>
         {userHasAccount ? 'Welcome back': 'Let\'s get started...'}
       </h1>
       {userHasAccount ? 

@@ -1,4 +1,4 @@
-import { useLoaderData } from 'remix'
+import { Link, useLoaderData } from 'remix'
 import Shows from '../../models/Shows'
 
 export async function loader({params}) {
@@ -15,11 +15,19 @@ function Title() {
   const show = useLoaderData()
 
   return (
-    <div>
-      <h1>{show?.title}</h1>
-      <img src={show?.image} alt={`${show?.title} title image`} />
-      <p>{show?.description}</p>
-      {/* TODO: back button */}
+    <div className='flex flex-col items-center justify-center px-10 mt-32'>
+      <h1 className='mb-4 text-3xl text-center text-slate-900'>{show?.title}</h1>
+      <img 
+        src={show?.image} alt={`${show?.title} title image`}
+        className="mb-4 w-72"
+      />
+      <p className='leading-8 text-center text-slate-900'>{show?.description}</p>
+      <Link 
+        to='/browse'
+        className='w-full py-2 mt-4 text-lg tracking-wide text-center text-white rounded-md bg-slate-900 dark:bg-slate-700'
+      >
+        Back
+      </Link>
     </div>
   )
 }

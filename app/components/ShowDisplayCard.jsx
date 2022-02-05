@@ -36,7 +36,7 @@ function ShowDisplayCard({show}) {
         </Link>
       </div>
       <div hidden={!imageLoaded}>
-        <div className='flex justify-between w-full bg-white rounded-b-lg shadow dark:bg-slate-800 '>
+        <div className='flex justify-between w-full bg-white rounded-b-lg shadow dark:bg-slate-700 '>
             <button 
               onClick={() => setHideFocus(!hideFocus)}
               className='px-3 py-2 rounded-bl-lg '
