@@ -8,7 +8,7 @@ import loginUser from '~/utils/loginUser'
 export async function action({request}) {
   const data = await request.formData()
   const {_action, ...values} = Object.fromEntries(data)
-  
+ 
   if (_action === 'register') {
     return saveUser(values)
   }

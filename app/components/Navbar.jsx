@@ -10,7 +10,7 @@ function Navbar({darkMode}) {
   
   return (
     <>
-      <nav className="fixed top-0 z-50 flex justify-between w-screen pt-3 pb-3 pl-4 pr-3 mt-3 bg-transparent">
+      <nav className="fixed top-0 z-50 flex justify-between w-screen px-4 py-3 mt-3 bg-transparent">
         <Link to='' onClick={() => setMenuOpen(false)} className="text-xl font-extrabold transition-colors duration-700 delay-500 text-slate-900 dark:text-emerald-300 font-mont">screenTime</Link>
        
         <ul className="flex items-center lg:hidden">
@@ -22,7 +22,10 @@ function Navbar({darkMode}) {
               className="z-10 flex items-center justify-center w-10 h-10 ml-5 transition-colors duration-700 delay-500 rounded-full bg-slate-900 dark:bg-emerald-300"
               onClick={() => setMenuOpen(!menuOpen)} 
             >
-              {menuOpen ? <VscClose className="text-2xl text-yellow-300 transition-colors duration-700 delay-500 dark:text-black" /> : <VscMenu className="text-2xl text-yellow-300 transition-colors duration-700 delay-500 dark:text-black"/>}
+              {menuOpen ? 
+                <VscClose className="text-2xl text-yellow-300 transition-colors duration-700 delay-500 dark:text-black" /> 
+              : 
+                <VscMenu className="text-2xl text-yellow-300 transition-colors duration-700 delay-500 dark:text-black"/>}
             </button>
           </li>
         </ul>

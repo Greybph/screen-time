@@ -4,7 +4,6 @@ import { redirect } from "remix"
 
 export default async function loginUser(values) {
   const user = await Users.findOne({username: values.username})
-  
   if (!user) {
     return {error: "Incorrect username or password"}
   } 

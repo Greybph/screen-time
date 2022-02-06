@@ -9,7 +9,7 @@ function ShowDisplayCard({show}) {
   const focuses = show.focus
   
   return (
-    <div className="flex flex-col mx-auto mb-10 w-72">
+    <div className="flex flex-col mx-auto mt-6 w-72">
       <div className='relative'> 
         <div 
         hidden={hideFocus} 
@@ -31,18 +31,18 @@ function ShowDisplayCard({show}) {
             src={show.image} 
             alt={`${show.title} title image`} 
             onLoad={() => setImageLoaded(true)}
-            className={`rounded-t-lg w-full ${!hideFocus ? 'opacity-0': ''}`}
+            className={`rounded-t-md w-full ${!hideFocus ? 'opacity-0': ''}`}
           />
         </Link>
       </div>
       <div hidden={!imageLoaded}>
-        <div className='flex justify-between w-full bg-white rounded-b-lg shadow dark:bg-slate-700 '>
-            <button 
-              onClick={() => setHideFocus(!hideFocus)}
-              className='px-3 py-2 rounded-bl-lg '
-            >
-              <RiArrowUpDownFill className='text-2xl text-slate-900 dark:text-white' /> 
-            </button>
+        <div className='flex justify-between w-full bg-white shadow rounded-b-md dark:bg-slate-700 '>
+          <button 
+            onClick={() => setHideFocus(!hideFocus)}
+            className='px-3 py-2 rounded-bl-md '
+          >
+            <RiArrowUpDownFill className='text-2xl text-slate-900 dark:text-white' /> 
+          </button>
           <LikeButton title={show.title} />
         </div>
       </div>
