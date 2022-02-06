@@ -14,7 +14,6 @@ export async function action({request}) {
     await Users.updateOne({username: 'a'}, {$pull: {likes: `${title}`}})
 
   }
-  console.log(_action, title)
   return null
 }
 
