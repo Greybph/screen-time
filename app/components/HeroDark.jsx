@@ -15,7 +15,7 @@ function HeroDark() {
         Get Started
       </button><br />
     </Link>
-    <Link to='/browse'>
+    <Link to='/shows'>
       <button 
         className='py-3 mt-2 tracking-wide prose-xl transition-colors duration-700 delay-500 border-4 rounded-full px-14 text-slate-900 hover:bg-slate-300 border-slate-900 dark:border-emerald-300 dark:text-white'
       >

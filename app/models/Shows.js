@@ -6,10 +6,7 @@ const ShowsSchema = mongoose.Schema({
   description: String,
   focus: Array,
   ages: Array,
-  color: {
-    light: String,
-    dark: String,
-  }
+  likes: Number,
 })
 
 const Shows = mongoose.models.Shows || mongoose.model("Shows", ShowsSchema)

@@ -48,7 +48,7 @@ function NavDropDown({isOpen, onNavigate}) {
           </Link>
         </li>
         <li title="Browse" className="pr-3 opacity-0">
-          <a href='/browse' onClick={onNavigate} className="flex items-center justify-between py-3 border-b cursor-pointer">
+          <a href='/shows' onClick={onNavigate} className="flex items-center justify-between py-3 border-b cursor-pointer">
             <span className="flex items-center justify-center">
               <CgSun className="text-4xl"/>
               <span className="pl-2 text-lg font-medium">Browse</span>

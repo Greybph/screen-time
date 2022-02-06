@@ -9,7 +9,7 @@ export async function loader({params}) {
   return show[0]
 }
 
-export async function action() {
+export async function action({request}) {
   return null
 }
 
