@@ -1,15 +1,18 @@
 import { useLoaderData } from 'remix'
 import Shows from '~/models/Shows'
+import Users from '~/models/Users'
 import FocusSelect from '~/components/FocusSelect'
 import AgeSelect from '~/components/AgeSelect'
 
-export async function loader() {
+export async function loader({request}) {
+  const userId = await request.headers.get("Cookie")
+  const user = await Users.findOne({_id: userId})
   const shows = await Shows.find({})
-  return shows
+  return {shows, user}
 }
 
 function Browse() {
-  const shows = useLoaderData()
+  const data = useLoaderData()
  
   return (
     <div className='flex flex-col items-center justify-center px-10 mt-32'>
@@ -24,7 +27,7 @@ function Browse() {
       >
         Children shows often have a specific teaching focus
       </p>
-      <FocusSelect shows={shows} />
+      <FocusSelect shows={data.shows} />
       <div className='w-full my-10 border border-emerald-300'></div>
       <h3 className='self-start pb-4 text-2xl tracking-wide dark:text-white'>Age</h3>
       <p 
@@ -32,7 +35,7 @@ function Browse() {
       >
         Find the right shows for your child's age
       </p>
-        <AgeSelect shows={shows} />
+        <AgeSelect shows={data.shows} />
     </div>
   )
 }

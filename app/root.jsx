@@ -5,11 +5,13 @@ import {
   Meta,
   Outlet,
   Scripts,
-  ScrollRestoration
+  ScrollRestoration,
+  useLoaderData
 } from "remix";
 import tailwindUrl from './styles/tailwind.css'
-import { useEffect, useState } from "react";
+import { useEffect, useState, createContext } from "react";
 import mongoose from 'mongoose'
+import Users from './models/Users'
 
 export function meta() {
   return { title: "New Remix App" };
@@ -19,17 +21,23 @@ export function links() {
   return [{rel: 'stylesheet', href: tailwindUrl}]
 }
 
-export async function loader() {
+export const UserContext = createContext()
+
+export async function loader({request}) {
   console.log("ROOT LOADER CALLED")
   mongoose.connect('mongodb://localhost/screen_time', {
     useNewUrlParser: true,
     useUnifiedTopology: true
   })
-   return null
+  const userId = await request.headers.get('Cookie')
+  const user = await Users.findById(userId)
+  return user
  }
+ 
 
 export default function App() {
-  const [darkMode, setDarkMode] = useState(false)  
+  const user = useLoaderData()
+  const [darkMode, setDarkMode] = useState(false)
 
   useEffect(() => {
     if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
@@ -57,7 +65,9 @@ export default function App() {
       </head>
       <body className= "transition-colors duration-1000 delay-300 font-mont bg-emerald-50 dark:bg-slate-900">
         <Navbar darkMode={() => setDarkMode(!darkMode)} />
+        <UserContext.Provider value={user}>
         <Outlet />
+        </UserContext.Provider>
         <ScrollRestoration />
         <Scripts />
         {process.env.NODE_ENV === "development" && <LiveReload />}
