@@ -22,12 +22,15 @@ function HeroDark() {
         Browse
       </button>
     </Link>
-    <img className='w-11/12 mx-auto my-20 rounded-lg shadow-md ' src={girlOnTablet} alt="young child using a tablet" />
-    {/* Photo by McKaela Taylor on Unsplash */}
+    <img 
+      className='w-11/12 mx-auto my-20 rounded-lg shadow-md' 
+      src={girlOnTablet} alt="young child using a tablet" 
+      title='Photo by McKaela Taylor on Unsplash'
+    />
     <h2 className='pb-4 text-2xl leading-normal text-black dark:text-white'>Our kids are spending more time on screens than ever before.</h2>
-    <Link to='about' className='flex items-center justify-between my-20'>
+    <Link to='about' className='flex items-center justify-between px-2 my-20'>
       <span className='text-xl text-gray-700 dark:text-gray-400'>Learn how we can help</span>
-      <BsArrowRightCircleFill className='text-6xl text-slate-900 dark:text-yellow-300'/>
+      <BsArrowRightCircleFill className='text-4xl text-slate-900 dark:text-yellow-300'/>
     </Link>
   </div>
   

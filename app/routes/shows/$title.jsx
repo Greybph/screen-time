@@ -51,7 +51,7 @@ function Title() {
           className='text-6xl dark:text-slate-700'
         />
         <span 
-          className='w-5/6 text-xl text-center dark:text-white whitespace-nowrap'
+          className='w-full text-xl text-center dark:text-white whitespace-nowrap'
         >
           {sliderText}
         </span>
@@ -62,7 +62,7 @@ function Title() {
       </div>
       <p className='leading-8 tracking-wide text-center text-slate-900 dark:text-slate-400'>{show?.description}</p>
       <Link 
-        to='/browse'
+        to='/shows'
         className='w-full py-2 mt-4 text-lg tracking-wide text-center text-white rounded-md bg-slate-900 dark:bg-slate-700'
       >
         Back

@@ -1,5 +1,5 @@
 import { RiArrowUpDownFill } from 'react-icons/ri'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Link } from 'remix'
 import LikeButton from './LikeButton'
 
@@ -7,7 +7,7 @@ function ShowDisplayCard({show}) {
   const [hideFocus, setHideFocus] = useState(true)
   const [imageLoaded, setImageLoaded] = useState(false)
   const focuses = show.focus
-  
+ 
   return (
     <div className="flex flex-col mx-auto mt-6 w-72">
       <div className='relative'> 

@@ -1,6 +1,3 @@
-import Users from '~/models/Users'
-import Shows from '~/models/Shows'
-
 export async function action({request}) {
   const data = await request.formData()
   const {_action, title} = Object.fromEntries(data) 

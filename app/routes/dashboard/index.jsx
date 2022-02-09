@@ -1,21 +1,19 @@
-import {useLoaderData, json, redirect} from 'remix'
-import Users from '~/models/Users'
+import {useEffect, useState} from 'react'
+import {useLoaderData} from 'remix'
+import Shows from '../../models/Shows'
+import LikedShowsList from '../../components/LikedShowsList'
 
-export async function loader({request}) {
-  const cookieHeader = request.headers.get("Cookie")
-  const user = await Users.findById(cookieHeader)
-
-  if (!user) {
-    return redirect('/account')
-  }
-  return user
+export async function loader() {
+  const shows = await Shows.find({})
+  return shows
 }
 
 function Dashboard() {
-  const user = useLoaderData()
+  const shows = useLoaderData()
+ 
   return (
-    <div>
-      <div>{user?.username}</div>
+    <div className='mt-32'>
+      <LikedShowsList shows={shows}/>
     </div>
   )
 }
