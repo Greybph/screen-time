@@ -21,10 +21,8 @@ export async function action({request}) {
 }
 
 export async function loader({request}) {
-  const userId = await request.headers.get("Cookie")
-  const user = await Users.findOne({_id: userId})
   const shows = await Shows.find({})
-  return {shows, user}
+  return {shows}
 }
 
 function Browse() {
