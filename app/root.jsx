@@ -4,6 +4,7 @@ import {
   LiveReload,
   Meta,
   Outlet,
+  redirect,
   Scripts,
   ScrollRestoration,
   useLoaderData
@@ -30,9 +31,17 @@ export async function loader({request}) {
     useUnifiedTopology: true
   })
   const userId = await request.headers.get('Cookie')
+  
+  if (userId === 'clear') {
+    return null
+  }
+
   const user = await Users.findById(userId)
-  return user
+
+  return user 
  }
+
+
  
 
 export default function App() {
@@ -64,9 +73,9 @@ export default function App() {
         <Links />
       </head>
       <body className= "transition-colors duration-1000 delay-300 font-mont bg-emerald-50 dark:bg-slate-900">
-        <Navbar darkMode={() => setDarkMode(!darkMode)} />
         <UserContext.Provider value={user}>
-        <Outlet />
+          <Navbar darkMode={() => setDarkMode(!darkMode)} />
+          <Outlet />
         </UserContext.Provider>
         <ScrollRestoration />
         <Scripts />

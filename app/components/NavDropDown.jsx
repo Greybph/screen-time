@@ -1,10 +1,12 @@
-import { Link, useTransition } from "remix"
+import { Form, Link, useTransition } from "remix"
 import gsap from 'gsap'
-import {useEffect, useRef} from 'react'
+import {useEffect, useRef, useContext} from 'react'
 import {CgSearch, CgController, CgChevronDown, CgSun, CgSupport} from 'react-icons/cg'
+import {UserContext} from '../root'
 
 function NavDropDown({isOpen, onNavigate}) {
   const transition = useTransition()
+  const userContext = useContext(UserContext)
   const state = transition.state === "loading" ? "loading" : 'idle'
   const navRef = useRef()
   const listRef = useRef()
@@ -65,16 +67,35 @@ function NavDropDown({isOpen, onNavigate}) {
             <CgChevronDown className="mr-4" />
           </Link>
         </li>
-        <li className="opacity-0">
-          <Link to='/contact' className="flex items-center justify-between py-2 mt-2 cursor-pointer">
-            <p className="text-lg">Log In</p>
-          </Link>
+        {userContext ? (
+          <li className="opacity-0">
+          <Form action='/logout' method='post'
+            onClick={onNavigate}
+            className="flex items-center justify-between py-2 mt-2 cursor-pointer">
+            <button type='submit'>
+              <p className="text-lg">Logout</p>
+            </button>
+          </Form>
         </li>
-        <li className="opacity-0">
-          <Link to='/contact' className="flex items-center justify-between py-3 -mt-4 cursor-pointer">
-            <p className="text-lg">Create Profile</p>
-          </Link>
-        </li>
+        ) : (
+        <>
+          <li className="opacity-0">
+            <Link to='/account'
+              onClick={onNavigate}
+              className="flex items-center justify-between py-2 mt-2 cursor-pointer">
+              <p className="text-lg">Login</p>
+            </Link>
+          </li>
+          <li className="opacity-0">
+            <Link to='/contact' 
+              onClick={onNavigate}
+              className="flex items-center justify-between py-3 -mt-4 cursor-pointer">
+              <p className="text-lg">Create Profile</p>
+            </Link>
+          </li>
+        </>
+        )}
+        
       </ul>
     </div>
   )

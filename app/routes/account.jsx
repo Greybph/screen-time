@@ -2,7 +2,6 @@ import RegisterForm from '../components/RegisterForm'
 import LoginForm from '../components/LoginForm'
 import {useState} from 'react'
 import loginUser from '../utils/loginUser'
-import Users from '../models/Users'
 import { useActionData } from 'remix'
 import registerUser from '../utils/registerUser'
 
@@ -23,6 +22,7 @@ export async function action({request}) {
 function AccountPage() {
   const [hasAccount, setHasAccount] = useState(false)
   const action = useActionData()
+  
   return (
     <div>
       {action?.error ? <p>{action?.error}</p> : ''}

@@ -20,6 +20,7 @@ export default async function registerUser(values) {
   hashedPw = hasher.generate(values.password)
 
   const user = await Users.create({username: values.username, email: values.email, password: hashedPw})
+ 
   return redirect('/dashboard', {
     headers: {
       "Set-Cookie": user._id
