@@ -4,6 +4,22 @@ import Users from '~/models/Users'
 import FocusSelect from '~/components/FocusSelect'
 import AgeSelect from '~/components/AgeSelect'
 
+export async function action({request}) {
+  const data = await request.formData()
+  const {_action, show} = Object.fromEntries(data)
+  const userId = request.headers.get('Cookie')
+
+  if (_action === 'like' && userId !== 'clear') {
+    await Users.findByIdAndUpdate(userId, {$push: {likes: show}})
+  }
+
+  if (_action === 'unlike' && userId !== 'clear') {
+    await Users.findByIdAndUpdate(userId, {$pull: {likes: show}})
+  }
+  
+  return null
+}
+
 export async function loader({request}) {
   const userId = await request.headers.get("Cookie")
   const user = await Users.findOne({_id: userId})
