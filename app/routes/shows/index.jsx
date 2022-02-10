@@ -16,7 +16,7 @@ export async function action({request}) {
   if (_action === 'unlike' && userId !== 'clear') {
     await Users.findByIdAndUpdate(userId, {$pull: {likes: show}})
   }
-  
+
   return null
 }
 

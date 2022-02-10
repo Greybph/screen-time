@@ -1,15 +1,17 @@
 import {useState, useContext} from 'react'
 import { BsSuitHeart, BsSuitHeartFill } from 'react-icons/bs'
-import { Form } from 'remix'
+import { useFetcher } from 'remix'
 import {UserContext} from '../root'
 
 function LikeButton({title, liked = false}) {
-const [isLiked, setIsLiked] = useState(false)
-const userContext = useContext(UserContext)
+  const userContext = useContext(UserContext)
+const [isLiked, setIsLiked] = useState(userContext.likes.includes(title))
+const fetcher = useFetcher()
+
   return (
     <>
     {!isLiked ? (
-      <Form method='post' className='flex items-center justify-center px-2'>
+      <fetcher.Form method='post' className='flex items-center justify-center px-2'>
         <input type='hidden' name='_action' value='unlike' />
         <input type='hidden' name='show' value={title} />
         <button type="submit">
@@ -18,9 +20,9 @@ const userContext = useContext(UserContext)
             className='text-2xl text-slate-900 dark:text-white'
             />
         </button>
-      </Form>
+      </fetcher.Form>
     ) : (
-      <Form method='post' className='flex items-center justify-center px-2'>
+      <fetcher.Form method='post' className='flex items-center justify-center px-2'>
       <input type='hidden' name='_action' value='like' />
       <input type='hidden' name='show' value={title} />
       <button type="submit">
@@ -29,7 +31,7 @@ const userContext = useContext(UserContext)
           className='text-2xl text-slate-900 dark:text-white'
         />
       </button>
-    </Form>
+    </fetcher.Form>
     )}
   </>
   )
