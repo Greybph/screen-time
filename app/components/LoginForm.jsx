@@ -3,7 +3,7 @@ import {Form, Link} from 'remix'
 function LoginForm({onClick, href}) {
   return (
     <div>
-      <Form method="post" className="max-w-sm px-10 py-8 mx-auto mt-24 bg-transparent">
+      <Form method="post" aciton='/account' className="max-w-sm px-10 py-8 mx-auto mt-24 bg-transparent">
         <input type="hidden" name="_action" value="login" />
         <div className="space-y-4">
           <h1 className="text-2xl text-center text-slate-900 dark:text-white">Login</h1>
