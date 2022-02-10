@@ -80,7 +80,7 @@ function NavDropDown({isOpen, onNavigate}) {
         ) : (
         <>
           <li className="opacity-0">
-            <Link to='/account'
+            <Link to='/login'
               onClick={onNavigate}
               className="flex items-center justify-between py-2 mt-2 cursor-pointer">
               <p className="text-lg">Login</p>
