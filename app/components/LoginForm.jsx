@@ -1,6 +1,8 @@
-import {Form, Link} from 'remix'
+import {Form, Link, useTransition} from 'remix'
 
-function LoginForm({onClick, href}) {
+function LoginForm() {
+  const transition = useTransition()
+  
   return (
     <div>
       <Form method="post" aciton='/account' className="max-w-sm px-10 py-8 mx-auto mt-24 bg-transparent">
@@ -16,26 +18,24 @@ function LoginForm({onClick, href}) {
             <input name="password" type="password" minLength='4' className="w-full px-4 py-2 bg-gray-300 rounded-md outline-none" />
           </div>
         </div>
-        <button type='submit' className="w-full py-2 mt-4 text-lg tracking-wide text-white rounded-md bg-slate-900 dark:bg-slate-700">Done</button>
+        <button 
+          type='submit' 
+          className="w-full py-2 mt-4 text-lg tracking-wide text-white rounded-md bg-slate-900 dark:bg-slate-700"
+        >
+          {transition.submission ? 'Loging in...' : 'Login'}
+        </button>
       </Form>
       <p className='text-center text-gray-600 dark:text-slate-500'>Or create an account</p>
-      {href ? (
+     
         <div className='flex justify-center'>
           <Link 
-          to={href}
+          to='/register'
           className='text-center underline cursor-pointer text-slate-900 dark:text-white'
           >
             Sign-up
           </Link>
         </div>
-      ) : (
-        <p 
-      className='text-center underline cursor-pointer text-slate-900 dark:text-white'
-      onClick={onClick}
-      >
-        Sign-up
-      </p>
-      )}
+     
     </div>
   )
 }

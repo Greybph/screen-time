@@ -27,7 +27,7 @@ function LikeButton({title}) {
 
   return (
     <>
-    <LikesWarningPopup />
+    {warningShowed && <LikesWarningPopup />}
     {!isLiked ? (
       <fetcher.Form method='post' className='relative flex items-center justify-center px-2'>
         <input type='hidden' name='_action' value='unlike' />

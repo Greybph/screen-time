@@ -14,7 +14,11 @@ export default async function registerUser(values) {
   }
 
   if (values.email === '' || !values.email.includes('@')) {
-    return {error: 'Please provide a valid email address'}
+    return {error: 'Invalid email address'}
+  }
+
+  if (values.password.length < 4) {
+    return {error: 'Password must be 4+ characters'}
   }
 
   hashedPw = hasher.generate(values.password)

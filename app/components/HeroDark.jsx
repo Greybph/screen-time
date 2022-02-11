@@ -8,7 +8,7 @@ function HeroDark() {
     <h1 className='text-2xl leading-normal transition-colors duration-700 delay-500 md:text-4xl dark:text-white'>
       Help your child get the most out of their screen time.
     </h1>
-    <Link to='account'>
+    <Link to='register'>
       <button 
         className='px-10 py-4 mt-10 tracking-wide prose-xl text-white transition-colors duration-700 delay-500 rounded-full dark:bg-white dark:text-slate-900 hover:bg-slate-800 bg-slate-900'
       >

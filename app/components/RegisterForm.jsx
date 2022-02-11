@@ -1,8 +1,9 @@
-import {Form} from 'remix'
+import {Form, Link, useTransition} from 'remix'
 import { useState } from 'react'
 import {BsFillCheckCircleFill} from 'react-icons/bs'
 
-function RegisterForm({onClick}) {
+function RegisterForm() {
+  const transition = useTransition()
   const [minLength, setMinLength] = useState(false)
 
   function handleChange(e) {
@@ -12,7 +13,6 @@ function RegisterForm({onClick}) {
   return (
     <div>
       <Form method="post" className="max-w-sm px-10 py-8 mx-auto mt-24 bg-transparent">
-        <input type="hidden" name="_action" value='register' />
         <div className="space-y-4">
           <h1 className="text-2xl text-center text-slate-900 dark:text-white">Sign-up</h1>
           <div>
@@ -35,15 +35,22 @@ function RegisterForm({onClick}) {
             />
           </div>
         </div>
-        <button type='submit' className="w-full py-2 mt-4 text-lg tracking-wide text-white rounded-md bg-slate-900 dark:bg-slate-700">Done</button>
+        <button 
+          type='submit' 
+          className="w-full py-2 mt-4 text-lg tracking-wide text-white rounded-md bg-slate-900 dark:bg-slate-700"
+        >
+          {transition.submission ? "Submitting..." : "Done"}
+        </button>
       </Form>
       <p className='text-center text-gray-600 dark:text-slate-500'>Already have an account?</p>
-        <p 
-        className='text-center underline cursor-pointer text-slate-800 dark:text-white'
-        onClick={onClick}
-        >
-          Login
-        </p>
+      <div className='flex items-center justify-center'>
+        <Link
+          to='/login'
+          className='text-center underline cursor-pointer text-slate-800 dark:text-white'
+          >
+            Login
+          </Link>
+      </div>
     </div>
   )
 }

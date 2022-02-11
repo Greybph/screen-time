@@ -1,28 +1,30 @@
+import RegisterForm from '../components/RegisterForm'
 import LoginForm from '../components/LoginForm'
-import loginUser from '../utils/loginUser'
+import registerUser from '../utils/registerUser'
 import AuthErrorPopup from '../components/AuthErrorPopup'
+import {useState} from 'react'
 import { useActionData, useTransition } from 'remix'
 
 export async function action({request}) {
   const data = await request.formData()
-  const { ...values} = Object.fromEntries(data)
+  const {...values} = Object.fromEntries(data)
 
-  return loginUser(values)
+  return registerUser(values)
 }
 
-function LoginPage() {
+function RegisterPage() {
   const action = useActionData()
   const transition = useTransition()
-
+  
   return (
     <div>
-      {action?.error && transition.state === 'idle'
+      {action?.error && transition.state === 'idle' 
         ? <AuthErrorPopup error={action?.error} /> 
         : ''
       }
-      <LoginForm href='/register' />
+      <RegisterForm />  
     </div>
   )
 }
 
-export default LoginPage
+export default RegisterPage
