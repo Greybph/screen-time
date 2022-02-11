@@ -15,7 +15,7 @@ function LikesWarningPopup() {
           <div className="mx-3">
             <span className='block'>Want to save your likes?</span>
             <span className="text-sm text-gray-600">
-              <Link to='/account'>
+              <Link to='/register'>
                 Create an <span className='underline'>account</span>
               </Link>
             </span>

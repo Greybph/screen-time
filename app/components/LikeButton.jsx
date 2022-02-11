@@ -7,13 +7,13 @@ import LikesWarningPopup from './LikesWarningPopup'
 function LikeButton({title}) {
   const userContext = useContext(UserContext)
   const [isLiked, setIsLiked] = useState(userContext?.likes.includes(title))
-  const [showLikesWarning, setShowLikesWarning] = useState(!localStorage.getItem("LIKES_WARNING_SHOWED"))
+  const [showLikesWarning, setShowLikesWarning] = useState(!sessionStorage.getItem("LIKES_WARNING_SHOWED"))
   const [warningShowed, setWarnignShowed] = useState(false)
   const fetcher = useFetcher()
 
   useEffect(() => {
     if (warningShowed) {
-      localStorage.setItem("LIKES_WARNING_SHOWED", true)
+      sessionStorage.setItem("LIKES_WARNING_SHOWED", true)
     }
   },[warningShowed])
 
