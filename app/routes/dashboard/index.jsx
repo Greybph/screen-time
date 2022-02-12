@@ -1,12 +1,13 @@
-import {useEffect, useState, useRef, useContext} from 'react'
+import {useEffect, useState, useContext} from 'react'
 import {useActionData, useLoaderData, useTransition} from 'remix'
 import {BsChevronDown} from 'react-icons/bs'
-import {AiOutlinePlus} from 'react-icons/ai'
+import {AiOutlinePlus, AiOutlineClose} from 'react-icons/ai'
 import {UserContext} from '../../root'
 import AddProfileModal from '../../components/AddProfileModal'
 import saveProfile from '../../utils/saveProfile'
 import AlertPopup from '../../components/AlertPopup'
 import Users from '../../models/Users'
+import ProfilesList from '../../components/ProfilesList'
 
 export async function action({request}) {
   const data = await request.formData()
@@ -26,6 +27,7 @@ function Dashboard() {
   const user = useLoaderData()
   const userContext = useContext(UserContext)
   const [openCreateProfile, setOpenCreateProfile] = useState(false) 
+  const [showProfiles, setShowProfiles] = useState(false)
 
   useEffect(() => {
     if (action?.success) {
@@ -35,22 +37,30 @@ function Dashboard() {
 
   return (
     <div className='px-8 mt-32'>
-      <h1 className="mx-auto mb-8 text-2xl w-fit">Dashboard</h1>
+      <h1 className="mx-auto mb-8 text-2xl w-fit">Dashboard</h1>    
       <div className='flex items-center justify-between px-3 py-3 rounded-t-md bg-slate-300'>
         <span className='text-xl text-slate-900'>Profiles</span>
         
       {user.profiles.length 
-        ? <BsChevronDown className='text-xl' /> 
+        ? 
+          showProfiles ?
+           <AiOutlineClose
+            className='text-2xl' 
+            onClick={() => setShowProfiles(false)} /> 
+          : 
+            <BsChevronDown 
+              className='text-2xl' 
+              onClick={() => setShowProfiles(true)}
+            /> 
         : <AiOutlinePlus
             className={`${openCreateProfile ? 'translate-y-12 rotate-45 relative z-50' : ''} text-3xl text-slate-900 transition-all duration-300`} 
             onClick={() => {openCreateProfile ? setOpenCreateProfile(false) : setOpenCreateProfile(true)}}
           /> 
       }
-       
       </div>
-
+      {showProfiles && <ProfilesList profiles={user?.profiles} />}
       {openCreateProfile && <AddProfileModal />}
-      {/* openShowProfiles && <ProfileList */}
+      
       {action?.error && transition.state === 'idle' 
         ? <AlertPopup 
             title='Woops!'
@@ -62,7 +72,7 @@ function Dashboard() {
       }
       {action?.success && transition.state === 'idle' 
         ? <AlertPopup 
-            title="Profile created"
+            title="Done!"
             message={action?.success}
             type='success'
             duration={5000}
