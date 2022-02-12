@@ -1,7 +1,7 @@
 import RegisterForm from '../components/RegisterForm'
 import LoginForm from '../components/LoginForm'
 import registerUser from '../utils/registerUser'
-import AuthErrorPopup from '../components/AuthErrorPopup'
+import AlertPopup from '../components/AlertPopup'
 import {useState} from 'react'
 import { useActionData, useTransition } from 'remix'
 
@@ -19,7 +19,12 @@ function RegisterPage() {
   return (
     <div>
       {action?.error && transition.state === 'idle' 
-        ? <AuthErrorPopup error={action?.error} /> 
+        ? <AlertPopup
+          title="Woops!"       
+          message={action?.error}
+          type='error'
+          duration={5000} 
+        /> 
         : ''
       }
       <RegisterForm />  

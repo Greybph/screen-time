@@ -1,6 +1,6 @@
 import LoginForm from '../components/LoginForm'
 import loginUser from '../utils/loginUser'
-import AuthErrorPopup from '../components/AuthErrorPopup'
+import AlertPopup from '../components/AlertPopup'
 import { useActionData, useTransition } from 'remix'
 
 export async function action({request}) {
@@ -17,7 +17,12 @@ function LoginPage() {
   return (
     <div>
       {action?.error && transition.state === 'idle'
-        ? <AuthErrorPopup error={action?.error} /> 
+        ? <AlertPopup 
+          title='Woops!'
+          message={action?.error}
+          type='error'
+          duration={5000}
+        /> 
         : ''
       }
       <LoginForm href='/register' />

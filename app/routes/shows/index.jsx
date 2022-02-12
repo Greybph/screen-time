@@ -6,17 +6,16 @@ import AgeSelect from '~/components/AgeSelect'
 
 export async function action({request}) {
   const data = await request.formData()
-  const {_action, show} = Object.fromEntries(data)
-  const userId = request.headers.get('Cookie')
+  const {_action, show, userId} = Object.fromEntries(data)
 
-  if (_action === 'like' && userId !== 'clear') {
+  if (_action === 'like') {
     await Users.findByIdAndUpdate(userId, {$push: {likes: show}})
   }
 
-  if (_action === 'unlike' && userId !== 'clear') {
+  if (_action === 'unlike') {
     await Users.findByIdAndUpdate(userId, {$pull: {likes: show}})
   }
-
+  console.log("PPP")
   return null
 }
 
