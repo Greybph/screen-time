@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react'
 import { Link } from 'remix'
 import LikeButton from './LikeButton'
 
-function ShowDisplayCard({show}) {
+function ShowDisplayCard({show, likeButton = true}) {
   const [hideFocus, setHideFocus] = useState(true)
   const [imageLoaded, setImageLoaded] = useState(false)
   const focuses = show.focus
@@ -43,7 +43,7 @@ function ShowDisplayCard({show}) {
           >
             <RiArrowUpDownFill className='text-2xl text-slate-900 dark:text-white' /> 
           </button>
-          <LikeButton title={show.title} />
+          {likeButton && <LikeButton title={show.title} />}
         </div>
       </div>
     </div> 
