@@ -81,8 +81,10 @@ function Dashboard() {
       }
       {action?.success && transition.state === 'idle' 
         ? <AlertPopup 
-            title="Done!"
-            message={action?.success}
+            title={`Profile created for ${action?.name}`}
+            message={`
+             Click ${action?.gender === 'boy' ? 'his' : 'her'} name to get started 
+            `}
             type='success'
             duration={5000}
           /> 

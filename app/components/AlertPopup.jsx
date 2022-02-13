@@ -19,7 +19,13 @@ function AlertPopup({title, message, type, duration, children }) {
         </div>
         <div className="px-4 py-2 -mx-3">
           <div className="mx-3">
-            <span className={`${type === 'error' ? 'text-red-500' : 'text-slate-900'} block`}>
+            <span className={`
+                ${type === 'error' && 'text-red-500'}
+                ${type === 'success' && 'text-emerald-500'}
+                ${type === 'alert' && 'text-slate-900'}
+                block tracking-wide
+              `}
+            >
               {title}
             </span>
             {message && (

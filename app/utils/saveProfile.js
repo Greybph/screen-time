@@ -13,5 +13,9 @@ export default async function saveProfile(values) {
       likes: []
     }}})
   
-  return {success: 'Profile create for ' + values.name}
+  return {
+    success: true,
+    name: values.name,
+    gender: values.gender,
+  }
 }
