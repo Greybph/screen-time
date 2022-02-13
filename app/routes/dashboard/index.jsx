@@ -32,6 +32,7 @@ function Dashboard() {
   useEffect(() => {
     if (action?.success) {
       setOpenCreateProfile(false)
+      setShowProfiles(true)
     }
   }, [action])
 
@@ -45,21 +46,29 @@ function Dashboard() {
         ? 
           showProfiles ?
            <AiOutlineClose
-            className='text-2xl' 
-            onClick={() => setShowProfiles(false)} /> 
+            className={`${openCreateProfile && showProfiles ? 'translate-y-14': ''} text-2xl transition-transform duration-300 delay-100`} 
+            onClick={openCreateProfile ? 
+                () => setOpenCreateProfile(false) : 
+                () => setShowProfiles(false)
+              } 
+            /> 
           : 
             <BsChevronDown 
               className='text-2xl' 
               onClick={() => setShowProfiles(true)}
             /> 
         : <AiOutlinePlus
-            className={`${openCreateProfile ? 'translate-y-12 rotate-45 relative z-50' : ''} text-3xl text-slate-900 transition-all duration-300`} 
+            className={`${openCreateProfile  ? 'translate-y-12 rotate-45 relative z-50' : ''} text-3xl text-slate-900 transition-all duration-300`} 
             onClick={() => {openCreateProfile ? setOpenCreateProfile(false) : setOpenCreateProfile(true)}}
           /> 
       }
       </div>
-      {showProfiles && <ProfilesList profiles={user?.profiles} />}
       {openCreateProfile && <AddProfileModal />}
+      {showProfiles && 
+        <ProfilesList profiles={user?.profiles} 
+          onClick={() => setOpenCreateProfile(true)}
+        />
+      }
       
       {action?.error && transition.state === 'idle' 
         ? <AlertPopup 

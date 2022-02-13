@@ -38,11 +38,12 @@ function LikeButton({title}) {
         </Link>
       </AlertPopup>
     }
+    
     {!isLiked ? (
       <fetcher.Form method='post' className='relative flex items-center justify-center px-2'>
         <input type='hidden' name='_action' value='unlike' />
         <input type='hidden' name='show' value={title} />
-        <input type='hidden' name='userId' value={userContext._id} />
+        <input type='hidden' name='userId' value={userContext?._id} />
         <button 
           type="submit"
           onClick={userContext ? null : noUserHandleLike}
@@ -55,7 +56,7 @@ function LikeButton({title}) {
       </fetcher.Form>
     ) : (
       <fetcher.Form method='post' className='relative flex items-center justify-center px-2'>
-        <input type='hidden' name='userId' value={userContext._id} />
+        <input type='hidden' name='userId' value={userContext?._id} />
         <input type='hidden' name='_action' value='like' />
         <input type='hidden' name='show' value={title} />
         <button 
