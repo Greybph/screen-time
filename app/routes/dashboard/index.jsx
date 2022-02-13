@@ -8,6 +8,7 @@ import saveProfile from '../../utils/saveProfile'
 import AlertPopup from '../../components/AlertPopup'
 import Users from '../../models/Users'
 import ProfilesList from '../../components/ProfilesList'
+import ProfilesBlock from '../../components/ProfilesBlock'
 
 export async function action({request}) {
   const data = await request.formData()
@@ -38,8 +39,9 @@ function Dashboard() {
 
   return (
     <div className='px-8 mt-32'>
-      <h1 className="mx-auto mb-8 text-2xl w-fit">Dashboard</h1>    
-      <div className='flex items-center justify-between px-3 py-3 rounded-t-md bg-slate-300'>
+      <h1 className="mx-auto mb-8 text-2xl w-fit">Dashboard</h1>
+      <ProfilesBlock user={user} />    
+      {/* <div className='flex items-center justify-between px-3 py-3 rounded-t-md bg-slate-300'>
         <span className='text-xl text-slate-900'>Profiles</span>
         
       {user.profiles.length 
@@ -62,15 +64,16 @@ function Dashboard() {
             onClick={() => {openCreateProfile ? setOpenCreateProfile(false) : setOpenCreateProfile(true)}}
           /> 
       }
-      </div>
-      {openCreateProfile && <AddProfileModal />}
+      </div> */}
+
+      {/* {openCreateProfile && <AddProfileModal />}
       {showProfiles && 
         <ProfilesList profiles={user?.profiles} 
           onClick={() => setOpenCreateProfile(true)}
         />
-      }
+      } */}
       
-      {action?.error && transition.state === 'idle' 
+      {/* {action?.error && transition.state === 'idle' 
         ? <AlertPopup 
             title='Woops!'
             message={action?.error} 
@@ -89,7 +92,7 @@ function Dashboard() {
             duration={5000}
           /> 
         : ''
-      }
+      } */}
     </div>
   )
 }
