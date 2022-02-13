@@ -35,7 +35,7 @@ function ShowDisplayCard({show, likeButton = true}) {
           />
         </Link>
       </div>
-      <div hidden={!imageLoaded}>
+      <div hidden={likeButton && !imageLoaded}>
         <div className='flex justify-between w-full bg-white shadow rounded-b-md dark:bg-slate-700 '>
           <button 
             onClick={() => setHideFocus(!hideFocus)}
