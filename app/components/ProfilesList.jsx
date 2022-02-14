@@ -31,7 +31,7 @@ function ProfilesList({profiles, onClick}) {
       {profiles.map(profile => (
         <Link
           to={`/dashboard/${profile.name}`} 
-          className='py-2 px-4 flex items-center justify-between'>
+          className='flex items-center justify-between px-6 py-2'>
           <span className='text-xl text-slate-900'>{profile.name}</span>
           <img 
             src={setIcon(profile.icon)} alt="icon" 

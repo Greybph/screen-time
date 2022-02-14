@@ -1,6 +1,6 @@
 import {useState, useEffect} from 'react'
 import { useActionData, useTransition } from 'remix'
-import {BsChevronDown} from 'react-icons/bs'
+import {CgChevronDown} from 'react-icons/cg'
 import {AiOutlinePlus, AiOutlineClose} from 'react-icons/ai'
 import AddProfileModal from './AddProfileModal'
 import ProfilesList from './ProfilesList'
@@ -35,8 +35,8 @@ function ProfilesBlock({user}) {
                 } 
               /> 
             : 
-              <BsChevronDown 
-                className='text-2xl' 
+              <CgChevronDown 
+                className='text-3xl text-slate-900' 
                 onClick={() => setShowProfiles(true)}
               /> 
           : <AiOutlinePlus

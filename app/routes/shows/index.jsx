@@ -3,17 +3,18 @@ import Shows from '~/models/Shows'
 import Users from '~/models/Users'
 import FocusSelect from '~/components/FocusSelect'
 import AgeSelect from '~/components/AgeSelect'
-import AlertPopup from '~/components/AlertPopup'
 
 export async function action({request}) {
   const data = await request.formData()
   const {_action, show, userId} = Object.fromEntries(data)
 
   if (_action === 'like') {
+    await Shows.findOneAndUpdate({title: show}, {$inc: {likes: 1}})
     await Users.findByIdAndUpdate(userId, {$push: {likes: show}})
   }
-
+  
   if (_action === 'unlike') {
+    await Shows.findOneAndUpdate({title: show}, {$inc: {likes: -1}})
     await Users.findByIdAndUpdate(userId, {$pull: {likes: show}})
   }
   console.log("PPP")

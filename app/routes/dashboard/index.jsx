@@ -1,11 +1,12 @@
 import {useContext} from 'react'
-import {useActionData, useLoaderData, useTransition} from 'remix'
+import {useActionData, useLoaderData, Link, useTransition} from 'remix'
 import {UserContext} from '../../root'
 import saveProfile from '../../utils/saveProfile'
 import Users from '../../models/Users'
 import Shows from '../../models/Shows'
 import ProfilesBlock from '../../components/ProfilesBlock'
 import MyFavoritesBlock from '../../components/MyFavoritesBlock'
+import DiscoverBlock from '../../components/DiscoverBlock'
 
 export async function action({request}) {
   const data = await request.formData()
@@ -30,11 +31,12 @@ function Dashboard() {
   const userContext = useContext(UserContext)
  
   return (
-    <div className='px-8 mt-32'>
+    <main className='px-8 mt-32'>
       <h1 className="mx-auto mb-8 text-2xl w-fit">Dashboard</h1>
       <ProfilesBlock user={loader.user} />    
       <MyFavoritesBlock user={loader.user} shows={loader.shows} />
-    </div>
+       <DiscoverBlock />
+    </main>
   )
 }
 

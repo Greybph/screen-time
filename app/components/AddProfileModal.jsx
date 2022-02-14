@@ -8,6 +8,7 @@ import catIcon from '../assets/catIcon.svg'
 import unicornIcon from '../assets/unicornIcon.svg'
 import footballIcon from '../assets/footballIcon.svg'
 import soccerIcon from '../assets/soccerIcon.svg'
+import alienIcon from '../assets/alienIcon.svg'
 
 function AddProfileModal() {
   const transition = useTransition()
@@ -49,10 +50,10 @@ function AddProfileModal() {
             />
           </div>
 
-          <div className='flex justify-evenly flex-col'>
+          <div className='flex flex-col justify-evenly'>
             <label htmlFor="age" className="block mb-1 font-semibold text-gray-600 dark:text-slate-400">Icon</label>
             <input type="hidden" name="icon" value={selectIcon} />
-            <div className='flex justify-evenly py-2'>
+            <div className='flex py-2 justify-evenly'>
               <img 
                 className={`${selectIcon === 'robot' && 'bg-slate-100'} w-14 p-2 rounded-full`} 
                 src={robotIcon} alt="Robot icon"

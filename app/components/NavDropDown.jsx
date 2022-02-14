@@ -41,10 +41,10 @@ function NavDropDown({isOpen, onNavigate}) {
           <input type='text' className="w-full h-10 pl-12 text-black placeholder-black/[.8] rounded-full outline-none bg-stone-200" placeholder="Search" />
         </li>
         <li title="About" className="pr-3 opacity-0">
-          <Link to='/about' onClick={onNavigate} className="flex items-center justify-between py-3 border-b cursor-pointer">
+          <Link to='/dashboard' onClick={onNavigate} className="flex items-center justify-between py-3 border-b cursor-pointer">
             <span className="flex items-center justify-center">
               <CgController className="text-4xl"/>
-              <span className="pl-2 text-lg font-medium">About</span>
+              <span className="pl-2 text-lg font-medium">Dashboard</span>
             </span>
             <CgChevronDown className="mr-4"/>
           </Link>
