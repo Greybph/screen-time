@@ -35,7 +35,7 @@ function Dashboard() {
       <h1 className="mx-auto mb-8 text-2xl w-fit">Dashboard</h1>
       <ProfilesBlock user={loader.user} />    
       <MyFavoritesBlock user={loader.user} shows={loader.shows} />
-       <DiscoverBlock />
+      <DiscoverBlock />
     </main>
   )
 }

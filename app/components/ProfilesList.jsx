@@ -1,28 +1,23 @@
 import {Link} from 'remix'
 import {AiOutlinePlus} from 'react-icons/ai'
-import robotIcon from '../assets/robotIcon.svg'
+import pigIcon from '../assets/pigIcon.svg'
 import catIcon from '../assets/catIcon.svg'
 import dogIcon from '../assets/dogIcon.svg'
-import unicornIcon from '../assets/unicornIcon.svg'
-import soccerIcon from '../assets/soccerIcon.svg'
-import footballIcon from '../assets/footballIcon.svg'
+import pandaIcon from '../assets/pandaIcon.svg'
+
 
 function ProfilesList({profiles, onClick}) {
 
   function setIcon(icon) {
     switch (icon) {
-      case 'robot':
-        return robotIcon 
+      case 'pig':
+        return pigIcon 
       case 'cat':
         return catIcon
       case 'dog':
         return dogIcon
-      case 'unicorn':
-        return unicornIcon
-      case 'soccer':
-        return soccerIcon
-      case 'football':
-        return footballIcon
+      case 'panda':
+        return pandaIcon
     }
   }
 

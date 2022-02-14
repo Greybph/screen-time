@@ -17,7 +17,8 @@ export default async function saveProfile(values) {
       gender: values.gender,
       icon: values.icon,
       likes: []
-    }}})
+    }}
+  })
   
   return {
     success: true,

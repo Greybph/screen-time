@@ -68,9 +68,7 @@ export default function App() {
         <meta name="viewport" content="width=device-width,initial-scale=1" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" />
-        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet" />
-        <Meta />
-        <Links />
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Open+Sans:wght@500&display=swap" rel="stylesheet" />        <Links />
       </head>
       <body className= "transition-colors duration-1000 delay-300 font-mont bg-emerald-50 dark:bg-slate-900">
         <UserContext.Provider value={user}>

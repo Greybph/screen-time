@@ -2,13 +2,14 @@ import {Form, useTransition} from 'remix'
 import {UserContext} from '../root'
 import {CgBoy, CgGirl} from 'react-icons/cg'
 import {useState, useContext} from 'react'
-import robotIcon from '../assets/robotIcon.svg'
 import dogIcon from '../assets/dogIcon.svg'
 import catIcon from '../assets/catIcon.svg'
-import unicornIcon from '../assets/unicornIcon.svg'
-import footballIcon from '../assets/footballIcon.svg'
-import soccerIcon from '../assets/soccerIcon.svg'
-import alienIcon from '../assets/alienIcon.svg'
+import bearIcon from '../assets/bearIcon.svg'
+import pigIcon from '../assets/pigIcon.svg'
+import koalaIcon from '../assets/koalaIcon.svg'
+import pandaIcon from '../assets/pandaIcon.svg'
+
+
 
 function AddProfileModal() {
   const transition = useTransition()
@@ -55,34 +56,24 @@ function AddProfileModal() {
             <input type="hidden" name="icon" value={selectIcon} />
             <div className='flex py-2 justify-evenly'>
               <img 
-                className={`${selectIcon === 'robot' && 'bg-slate-100'} w-14 p-2 rounded-full`} 
-                src={robotIcon} alt="Robot icon"
-                onClick={() => setSelectIcon("robot")}
-                />
-              <img 
-                className={`${selectIcon === 'cat' && 'bg-slate-100'} w-14 p-2 rounded-full`} 
+                className={`${selectIcon === 'cat' && 'scale-125'} w-20 p-2 rounded-lg`} 
                 src={catIcon} alt="Cat icon" 
                 onClick={() => setSelectIcon("cat")}
-                />
+              />
               <img 
-                className={`${selectIcon === 'dog' && 'bg-slate-100'} w-14 p-2 rounded-full`} 
+                className={`${selectIcon === 'dog' && 'scale-125 scale'} w-20 p-2 rounded-lg`} 
                 src={dogIcon} alt="Dog icon" 
                 onClick={() => setSelectIcon("dog")}
-                />
+              />
               <img 
-                className={`${selectIcon === 'unicorn' && 'bg-slate-100'} w-14 p-2 rounded-full`} 
-                src={unicornIcon} alt="Unicorn icon" 
-                onClick={() => setSelectIcon("unicorn")}
-                />
+                className={`${selectIcon === 'panda' && 'scale-125'} w-20 p-2 rounded-lg`} 
+                src={pandaIcon} alt="Panda icon" 
+                onClick={() => setSelectIcon("panda")}
+              />
               <img 
-                className={`${selectIcon === 'soccer' && 'bg-slate-100'} w-14 p-2 rounded-full`} 
-                src={soccerIcon} alt="Soccer ball icon" 
-                onClick={() => setSelectIcon("soccer")}
-                />
-              <img 
-                className={`${selectIcon === 'football' && 'bg-slate-100'} w-14 p-2 rounded-full`} 
-                src={footballIcon} alt="Football icon" 
-                onClick={() => setSelectIcon("football")}
+                className={`${selectIcon === 'pig' && 'scale-125'} w-20 p-2 rounded-lg`} 
+                src={pigIcon} alt="Pig icon" 
+                onClick={() => setSelectIcon("pig")}
               />
             </div>
           </div>

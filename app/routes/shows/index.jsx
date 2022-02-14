@@ -36,6 +36,12 @@ function Browse() {
       >
         Discover the shows that fit your child's needs.
       </h3>
+
+      {/* <div className='flex'>
+        <RiArrowUpDownFill />
+        <span>Toggle teaching focus</span>
+      </div> */}
+
       <h3 className='self-start py-4 mt-20 text-2xl tracking-wide dark:text-white'>Focus</h3>
       <p 
         className='self-start pb-4 tracking-wide text-slate-800 dark:text-slate-400'
