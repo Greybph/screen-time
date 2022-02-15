@@ -10,7 +10,7 @@ function LikedShowsList({shows, likes}) {
         {shows.map(show => {
           if (likes.includes(show.title)) {
             return (
-              <li>
+              <li key={show._id}>
                 <ShowDisplayCard show={show} likeButton={false} />
               </li>
             )

@@ -13,25 +13,25 @@ function ShowDisplayCard({show, likeButton = true}) {
       <div className='relative'> 
         <div 
         hidden={hideFocus} 
-        className='absolute w-full h-full bg-white rounded-t-lg dark:bg-slate-800'
+        className='absolute w-full h-full overflow-y-scroll rounded-t-lg bg-slate-400 bg-opacity-80 dark:bg-slate-800'
         >
           <ul className='flex flex-col items-center justify-center mt-4'>
             {focuses.map((focus, idx )=> 
               <li 
                 key={idx}
-                className='text-xl text-slate-900 dark:text-white'
+                className='text-2xl text-slate-900 dark:text-white'
               >
                 {focus}
               </li>
             )} 
           </ul>
         </div>
-        <Link to={`${show.title.replaceAll(" ", "-")}`}>
+        <Link to={`/shows/${show.title.replaceAll(" ", "-")}`}>
           <img 
             src={show.image} 
             alt={`${show.title} title image`} 
             onLoad={() => setImageLoaded(true)}
-            className={`rounded-t-md w-full ${!hideFocus ? 'opacity-0': ''}`}
+            className={`rounded-t-md w-full `}
           />
         </Link>
       </div>

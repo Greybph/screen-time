@@ -23,8 +23,9 @@ function ProfilesList({profiles, onClick}) {
 
   return (
     <div className='text-xl border-t text-slate-900 bg-slate-300 border-slate-300'>
-      {profiles.map(profile => (
+      {profiles.map((profile , idx)=> (
         <Link
+          key={idx}
           to={`/dashboard/${profile.name}`} 
           className='flex items-center justify-between px-6 py-2'>
           <span className='text-xl text-slate-900'>{profile.name}</span>
