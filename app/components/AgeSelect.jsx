@@ -30,7 +30,7 @@ function AgeSelect({shows}) {
       {ageFilter?.length ? (
         <div className='flex items-center px-4 py-2 mx-auto mt-4 rounded-md w-fit'>
           <RiArrowUpDownFill className='mr-4 text-2xl text-slate-900'/>
-          <span className='text-sm text-slate-800 font-open'>Toggle teaching focus</span>
+          <span className='text-sm font-bold tracking-wide text-slate-800 font-open'>Toggle teaching focus</span>
         </div>
       ) : ''}
 

@@ -1,13 +1,22 @@
 import LoginForm from '../components/LoginForm'
 import loginUser from '../utils/loginUser'
 import AlertPopup from '../components/AlertPopup'
-import { useActionData, useTransition } from 'remix'
+import { redirect, useActionData, useTransition } from 'remix'
 
 export async function action({request}) {
   const data = await request.formData()
   const { ...values} = Object.fromEntries(data)
 
   return loginUser(values)
+}
+
+export async function loader({request}) {
+  const userId = await request.headers.get("Cookie")
+  if (userId && userId !== 'clear') {
+    return redirect('/dashboard')
+  }
+ 
+  return null
 }
 
 function LoginPage() {

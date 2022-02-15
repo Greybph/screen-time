@@ -31,7 +31,7 @@ function Dashboard() {
   const userContext = useContext(UserContext)
  
   return (
-    <main className='px-8 mt-32'>
+    <main className='px-8 mt-28'>
       <h1 className="mx-auto mb-8 text-2xl w-fit">Dashboard</h1>
       <ProfilesBlock user={loader.user} />    
       <MyFavoritesBlock user={loader.user} shows={loader.shows} />

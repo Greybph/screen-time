@@ -40,10 +40,7 @@ export async function loader({request}) {
 
   return user 
  }
-
-
  
-
 export default function App() {
   const user = useLoaderData()
   const [darkMode, setDarkMode] = useState(false)
