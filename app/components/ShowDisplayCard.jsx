@@ -13,7 +13,7 @@ function ShowDisplayCard({show, likeButton = true}) {
       <div className='relative'> 
         <div 
         hidden={hideFocus} 
-        className='absolute w-full h-full overflow-y-scroll rounded-t-lg bg-slate-400 bg-opacity-80 dark:bg-slate-800'
+        className='absolute w-full h-full overflow-y-auto rounded-t-lg bg-slate-400 bg-opacity-80 dark:bg-slate-800'
         >
           <ul className='flex flex-col items-center justify-center mt-4'>
             {focuses.map((focus, idx )=> 
