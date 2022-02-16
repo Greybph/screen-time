@@ -13,6 +13,7 @@ import tailwindUrl from './styles/tailwind.css'
 import { useEffect, useState, createContext } from "react";
 import mongoose from 'mongoose'
 import Users from './models/Users'
+import Dumb from "./components/dumb";
 
 export function meta() {
   return { title: "New Remix App" };
@@ -70,6 +71,7 @@ export default function App() {
       <body className= "transition-colors duration-1000 delay-300 font-mont bg-emerald-50 dark:bg-slate-900">
         <UserContext.Provider value={user}>
           <Navbar darkMode={() => setDarkMode(!darkMode)} />
+          <Dumb />
           <Outlet />
         </UserContext.Provider>
         <ScrollRestoration />

@@ -21,7 +21,7 @@ function ProfilesBlock({user}) {
 
   return (
     <>
-      <div className='flex items-center justify-between px-3 py-3 rounded-t-md bg-slate-300'>
+      <div className='flex items-center justify-between px-3 py-3 bg-slate-300'>
         <span className='text-xl text-slate-900'>Profiles</span>
         
         {user.profiles.length 
@@ -41,9 +41,10 @@ function ProfilesBlock({user}) {
               /> 
           : <AiOutlinePlus
               className={`${openCreateProfile  ? 'translate-y-12 rotate-45 relative z-50' : ''} text-3xl text-slate-900 transition-all duration-300`} 
-              onClick={() => {openCreateProfile ? setOpenCreateProfile(false) : setOpenCreateProfile(true)}}
+              onClick={() => {setOpenCreateProfile(!openCreateProfile)}}
             /> 
         }
+        
       </div>
     
       {openCreateProfile && <AddProfileModal />}

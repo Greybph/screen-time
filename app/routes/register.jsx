@@ -18,6 +18,7 @@ export async function loader({request}) {
   if (userId && userId !== 'clear') {
     return redirect('/dashboard')
   }
+  return null
 }
 
 function RegisterPage() {

@@ -1,5 +1,5 @@
 import {useContext} from 'react'
-import {useActionData, useLoaderData, Link, useTransition} from 'remix'
+import {useActionData, useLoaderData, Link, useTransition, redirect} from 'remix'
 import {UserContext} from '../../root'
 import saveProfile from '../../utils/saveProfile'
 import Users from '../../models/Users'
@@ -16,6 +16,11 @@ export async function action({request}) {
 
 export async function loader({request}) {
   const userId = await request.headers.get("Cookie")
+
+  if (!userId || userId === 'clear') {
+    return redirect('/register')
+  }
+
   const user = await Users.findById(userId)
   const shows = await Shows.find({})
   return {
