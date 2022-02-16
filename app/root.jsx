@@ -13,7 +13,7 @@ import tailwindUrl from './styles/tailwind.css'
 import { useEffect, useState, createContext } from "react";
 import mongoose from 'mongoose'
 import Users from './models/Users'
-import Dumb from "./components/dumb";
+import Clip from "./components/Clip";
 
 export function meta() {
   return { title: "New Remix App" };
@@ -68,10 +68,10 @@ export default function App() {
         <link rel="preconnect" href="https://fonts.gstatic.com" />
         <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Open+Sans:wght@500&display=swap" rel="stylesheet" />        <Links />
       </head>
-      <body className= "transition-colors duration-1000 delay-300 font-mont bg-emerald-50 dark:bg-slate-900">
+      <body className= "transition-colors duration-1000 delay-300 bg-emerald-50 font-mont dark:bg-slate-900">
         <UserContext.Provider value={user}>
           <Navbar darkMode={() => setDarkMode(!darkMode)} />
-          <Dumb />
+          <Clip />
           <Outlet />
         </UserContext.Provider>
         <ScrollRestoration />

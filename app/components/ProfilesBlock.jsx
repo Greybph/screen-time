@@ -28,7 +28,7 @@ function ProfilesBlock({user}) {
           ? 
             showProfiles ?
               <AiOutlineClose
-                className={`${openCreateProfile && showProfiles ? 'translate-y-14': ''} text-2xl transition-transform duration-300 delay-100`} 
+                className='text-xl'  
                 onClick={openCreateProfile ? 
                   () => setOpenCreateProfile(false) : 
                   () => setShowProfiles(false)
@@ -36,18 +36,18 @@ function ProfilesBlock({user}) {
               /> 
             : 
               <CgChevronDown 
-                className='text-3xl text-slate-900' 
+                className='text-2xl text-slate-900' 
                 onClick={() => setShowProfiles(true)}
               /> 
           : <AiOutlinePlus
-              className={`${openCreateProfile  ? 'translate-y-12 rotate-45 relative z-50' : ''} text-3xl text-slate-900 transition-all duration-300`} 
+              className='text-xl text-slate-900' 
               onClick={() => {setOpenCreateProfile(!openCreateProfile)}}
             /> 
         }
         
       </div>
     
-      {openCreateProfile && <AddProfileModal />}
+      {openCreateProfile && <AddProfileModal onClick={() => setOpenCreateProfile(false)}/>}
     
       {showProfiles && 
         <ProfilesList 

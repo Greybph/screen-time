@@ -38,7 +38,7 @@ function ProfilesList({profiles, onClick}) {
       )}
       <div className='flex items-center justify-between px-3 py-3 bg-slate-400'>
         <span>Add Profile</span>
-        <AiOutlinePlus onClick={onClick} className='text-3xl' />
+        <AiOutlinePlus onClick={onClick} className='text-2xl' />
       </div>
     </div>
   )

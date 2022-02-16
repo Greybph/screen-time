@@ -15,11 +15,11 @@ function MyFavoritesBlock({shows, user}) {
         <span className='text-xl text-slate-900'>My Favorites</span>
         {showFavorites 
           ? <AiOutlinePlus
-            className='text-3xl rotate-45 text-slate-900'
+            className='text-2xl rotate-45 text-slate-900'
           />
           : 
           <CgChevronDown 
-            className='text-3xl text-slate-900'
+            className='text-2xl text-slate-900'
           />
         }
       </div>

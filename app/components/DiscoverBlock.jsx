@@ -10,7 +10,7 @@ function DiscoverBlock() {
         to='/shows'
       >
       <span className='text-xl text-slate-900'>Discover</span>
-      <CgChevronRight className={`${transition.state === 'loading' && 'animate-bounce'} text-3xl text-slate-900`} />
+      <CgChevronRight className={`${transition.state === 'loading' && 'animate-bounce'} text-2xl text-slate-900`} />
     </Link>
   )
 }

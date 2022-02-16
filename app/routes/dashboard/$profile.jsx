@@ -4,6 +4,7 @@ import dogIcon from '~/assets/dogIcon.svg'
 import catIcon from '~/assets/catIcon.svg'
 import pandaIcon from '~/assets/pandaIcon.svg'
 import pigIcon from '~/assets/pigIcon.svg'
+import {CgChevronDown} from 'react-icons/cg'
 
 export async function loader({params, request}) {
   const userId = await request.headers.get("Cookie")
@@ -31,13 +32,17 @@ function ProfilePage() {
   }
 
   return (
-    <div className="flex flex-col items-center justify-center mt-28">
+    <div className="flex flex-col items-center justify-center px-8 mt-28">
       <h3 className="text-3xl text-slate-900">{profile.name}</h3>
       <img 
         src={setIcon(profile.icon)} 
         alt={profile.icon + 'icon'} 
         className='w-20 py-4'
       />
+      <div className='flex items-center justify-between w-full px-3 py-3 rounded-md bg-slate-300'>
+        <span className='text-xl text-slate-900'>Interests</span>
+        <CgChevronDown className="text-2xl text-slate-900" />
+      </div>
     </div>
   )
 }

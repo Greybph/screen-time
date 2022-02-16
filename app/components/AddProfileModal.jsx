@@ -8,10 +8,11 @@ import bearIcon from '../assets/bearIcon.svg'
 import pigIcon from '../assets/pigIcon.svg'
 import koalaIcon from '../assets/koalaIcon.svg'
 import pandaIcon from '../assets/pandaIcon.svg'
+import {AiOutlinePlus} from 'react-icons/ai'
 
 
 
-function AddProfileModal() {
+function AddProfileModal({onClick}) {
   const transition = useTransition()
   const [selectGender, setSelectGender] = useState('')
   const [selectIcon, setSelectIcon] = useState('')
@@ -20,10 +21,14 @@ function AddProfileModal() {
   return (
     <Form 
     method="post" 
-    className="px-10 py-8 shadow rounded-b-md bg-slate-300">
+    className="fixed left-0 z-10 px-10 py-8 mx-8 shadow top-40 rounded-b-md bg-slate-300">
         <input type="hidden" name="userId" value={userContext?._id} />
         <div className="space-y-4">
-          <h1 className="text-2xl text-center text-slate-900 dark:text-white">Add Profile</h1>
+          <h1 className="relative text-2xl text-center text-slate-900 dark:text-white">Add Profile</h1>
+      <AiOutlinePlus 
+        className='absolute top-0 text-2xl rotate-45 right-6' 
+        onClick={onClick}
+      />
           <div> 
             <input type="hidden" name="gender" value={selectGender} />
             <div className='flex justify-evenly'>

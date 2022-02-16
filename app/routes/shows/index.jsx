@@ -32,7 +32,7 @@ function Browse() {
   return (
     <div className='flex flex-col items-center justify-center px-10 mt-28'>
       <h3 
-        className='pb-4 text-2xl leading-normal dark:text-white'
+        className='pb-4 text-2xl dark:text-white'
       >
         Discover the shows that fit your child's needs.
       </h3>
