@@ -4,7 +4,24 @@ import dogIcon from '~/assets/dogIcon.svg'
 import catIcon from '~/assets/catIcon.svg'
 import pandaIcon from '~/assets/pandaIcon.svg'
 import pigIcon from '~/assets/pigIcon.svg'
-import {CgChevronDown} from 'react-icons/cg'
+import InterestsBlock from '~/components/InterestsBlock'
+import addInterest from '~/utils/addInterest'
+import deleteInterest from "~/utils/deleteInterest"
+
+export async function action({request, params}) {
+  const formData = await request.formData()
+  const {_action, interest} = Object.fromEntries(formData)
+  
+  if (_action === 'add') {
+    addInterest(request, params, interest)
+  }
+
+  if (_action === 'delete') {
+    return deleteInterest(request, params, interest)
+  }
+
+  return null
+}
 
 export async function loader({params, request}) {
   const userId = await request.headers.get("Cookie")
@@ -39,10 +56,7 @@ function ProfilePage() {
         alt={profile.icon + 'icon'} 
         className='w-20 py-4'
       />
-      <div className='flex items-center justify-between w-full px-3 py-3 rounded-md bg-slate-300'>
-        <span className='text-xl text-slate-900'>Interests</span>
-        <CgChevronDown className="text-2xl text-slate-900" />
-      </div>
+      <InterestsBlock profile={profile} />
     </div>
   )
 }

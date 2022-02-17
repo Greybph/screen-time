@@ -22,7 +22,8 @@ export default async function saveProfile(values) {
       age: values.age,
       gender: values.gender,
       icon: values.icon,
-      likes: []
+      likes: [],
+      interests: [],
     }}
   })
 
