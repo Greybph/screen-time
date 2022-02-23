@@ -1,6 +1,6 @@
-import Users from '~/models/Users'
+import Users from '../models/Users'
 
-async function addInterest(request, params, interest) {
+export default async function updateGoals(goals, request, params) {
   const userId = await request.headers.get("Cookie")
   const user = await Users.findById(userId)
   const profileName = params.profile
@@ -9,11 +9,7 @@ async function addInterest(request, params, interest) {
   })
   const profileIdx = profileIdxs.filter(p => p !== undefined)
 
-  user.profiles[profileIdx].interests.push(interest.toLowerCase())
+  user.profiles[profileIdx].goals = goals
 
   await Users.findByIdAndUpdate(userId, user)
-
-  return {success: true}
 }
-
-export default addInterest

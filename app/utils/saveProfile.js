@@ -24,6 +24,7 @@ export default async function saveProfile(values) {
       icon: values.icon,
       likes: [],
       interests: [],
+      goals: [],
     }}
   })
 

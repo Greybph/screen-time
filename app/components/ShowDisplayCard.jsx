@@ -41,7 +41,7 @@ function ShowDisplayCard({show, likeButton = true}) {
             onClick={() => setHideFocus(!hideFocus)}
             className='px-3 py-2 rounded-bl-md '
           >
-            <RiArrowUpDownFill className='text-2xl text-slate-900 dark:text-white' /> 
+            <RiArrowUpDownFill title='Teaching focus' className='text-2xl text-slate-900 dark:text-white' /> 
           </button>
           {likeButton && <LikeButton title={show.title} />}
         </div>

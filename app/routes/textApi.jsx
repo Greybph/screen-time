@@ -7,6 +7,7 @@ export async function loader() {
   if (a.statusText === "Not Found") {
     return redirect('/')
   }
-  console.log(a.statusText)
- return  redirect('/')
+  const b = await a.json()
+  console.log(b.noun.syn)
+  return  redirect('/')
 }

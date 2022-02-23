@@ -1,18 +1,18 @@
 import {Link, useTransition} from 'remix'
 import {CgChevronRight} from 'react-icons/cg'
 
-function DiscoverBlock() {
+function LinkBlock({title, to}) {
   const transition = useTransition()
   
   return (
     <Link 
         className='flex items-center justify-between px-3 py-3 bg-slate-300'
-        to='/shows'
+        to={to}
       >
-      <span className='text-xl text-slate-900'>Discover</span>
+      <span className='text-xl text-slate-900'>{title}</span>
       <CgChevronRight className={`${transition.state === 'loading' && 'animate-bounce'} text-2xl text-slate-900`} />
     </Link>
   )
 }
 
-export default DiscoverBlock
+export default LinkBlock

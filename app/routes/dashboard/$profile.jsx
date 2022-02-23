@@ -1,24 +1,19 @@
-import { useLoaderData } from "remix"
+import { useLoaderData, useCatch, Link } from "remix"
 import Users from '~/models/Users'
 import dogIcon from '~/assets/dogIcon.svg'
 import catIcon from '~/assets/catIcon.svg'
 import pandaIcon from '~/assets/pandaIcon.svg'
 import pigIcon from '~/assets/pigIcon.svg'
-import InterestsBlock from '~/components/InterestsBlock'
-import addInterest from '~/utils/addInterest'
-import deleteInterest from "~/utils/deleteInterest"
+import trashIcon from '~/assets/trashIcon.svg'
+import updateGoals from '~/utils/updateGoals'
+import LearningGoalsBlock from "../../components/LearningGoalsBlock"
 
 export async function action({request, params}) {
   const formData = await request.formData()
-  const {_action, interest} = Object.fromEntries(formData)
-  
-  if (_action === 'add') {
-    addInterest(request, params, interest)
-  }
+  const {goals} = Object.fromEntries(formData)
+  const goalsArr = goals.split(',')
 
-  if (_action === 'delete') {
-    return deleteInterest(request, params, interest)
-  }
+  updateGoals(goalsArr, request, params)
 
   return null
 }
@@ -29,12 +24,41 @@ export async function loader({params, request}) {
   const user = await Users.findById(userId)
   const profile = user.profiles.filter(profile => profile.name === profileName)
 
+  if (!profile.length) {
+    throw new Response(profileName, {
+      status: 404
+    })
+  }
+
   return profile[0]
+}
+
+export function CatchBoundary() {
+  const caught = useCatch()
+  return (
+    <div className='flex flex-col items-center justify-center px-10 mt-28'>
+    <h3 className='text-3xl text-center text-slate-900'>Woops!</h3>
+    <p className="mt-2 text-slate-900">That profile doesnt exist</p>
+    <h4 className='mt-20 text-2xl text-center text-slate-900'>Would you like to create a profile for {caught.data}?</h4>
+    <Link 
+      to='/dashboard'
+      className='w-full py-2 text-lg tracking-wide text-center text-white rounded-md mt-14 bg-slate-900 dark:bg-slate-700'
+    >
+      Yes
+    </Link>
+    <Link 
+      to='/dashboard'
+      className='w-full py-2 mt-6 text-lg tracking-wide text-center text-white rounded-md bg-slate-800 dark:bg-slate-700'
+    >
+      No
+    </Link>
+    </div>
+  )
 }
 
 function ProfilePage() {
   const profile = useLoaderData()
-
+  
   function setIcon(icon) {
     switch (icon) {
       case 'dog':
@@ -45,9 +69,9 @@ function ProfilePage() {
         return pigIcon
       case 'panda':
         return pandaIcon
+      }
     }
-  }
-
+    
   return (
     <div className="flex flex-col items-center justify-center px-8 mt-28">
       <h3 className="text-3xl text-slate-900">{profile.name}</h3>
@@ -56,7 +80,13 @@ function ProfilePage() {
         alt={profile.icon + 'icon'} 
         className='w-20 py-4'
       />
-      <InterestsBlock profile={profile} />
+      <LearningGoalsBlock profile={profile} />
+      <Link 
+        to='/dashboard'
+        className='w-full py-2 my-4 text-lg tracking-wide text-center text-white rounded-md bg-slate-900 dark:bg-slate-700'
+      >
+        Back
+      </Link>
     </div>
   )
 }

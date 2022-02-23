@@ -30,24 +30,23 @@ function Browse() {
   const data = useLoaderData()
  
   return (
-    <div className='flex flex-col items-center justify-center px-10 mt-28'>
+    <div className='flex flex-col items-start px-10 mt-28'>
       <h3 
-        className='pb-4 text-2xl dark:text-white'
+        className='text-slate-900 text-2xl te dark:text-white'
       >
         Discover the shows that fit your child's needs.
       </h3>
-
-      <h3 className='self-start py-4 mt-20 text-2xl tracking-wide dark:text-white'>Focus</h3>
+      <h3 className='py-4 mt-20 text-slate-900 text-2xl tracking-wide dark:text-white'>Focus</h3>
       <p 
-        className='self-start pb-4 tracking-wide text-slate-800 dark:text-slate-400'
+        className='pb-4 tracking-wide text-slate-800 dark:text-slate-400'
       >
         Children shows often have a specific teaching focus
       </p>
       <FocusSelect shows={data.shows} />
       <div className='w-full my-10 border border-emerald-300'></div>
-      <h3 className='self-start pb-4 text-2xl tracking-wide dark:text-white'>Age</h3>
+      <h3 className='pb-4 text-2xl tracking-wide dark:text-white'>Age</h3>
       <p 
-        className='self-start pb-4 tracking-wide text-slate-800 dark:text-slate-400'
+        className='pb-4 tracking-wide text-slate-800 dark:text-slate-400'
       >
         Find the right shows for your child's age
       </p>

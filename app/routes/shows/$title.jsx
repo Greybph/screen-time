@@ -27,8 +27,8 @@ export function CatchBoundary() {
   return (
     <div className='flex flex-col items-center justify-center px-10 mt-28'>
       <h3 className='text-3xl text-center text-slate-900'>Woops!</h3>
-      <p className='py-6 text-center text-slate-900'>We couldn't find that show</p>
-      <h4 className='text-2xl text-center text-slate-900'>Here's some popular shows</h4>
+      <p className='mt-2 text-center text-slate-900'>We couldn't find that show</p>
+      <h4 className='mt-16 text-2xl text-center text-slate-900'>Here's some popular shows</h4>
       {popularShows.map(show => <ShowDisplayCard show={show} likeButton={false} />)}
       <Link 
         to='/shows'
@@ -37,7 +37,6 @@ export function CatchBoundary() {
         Discover More
       </Link>
     </div>
-    
   )
 }
 
@@ -55,7 +54,7 @@ function Title() {
         <p className='leading-8 tracking-wide text-center text-slate-900 dark:text-slate-400'>{show?.description}</p>
         <Link 
           to='/shows'
-          className='w-full py-2 mt-4 text-lg tracking-wide text-center text-white rounded-md bg-slate-900 dark:bg-slate-700'
+          className='w-full py-2 my-4 text-lg tracking-wide text-center text-white rounded-md bg-slate-900 dark:bg-slate-700'
         >
           Discover More
         </Link>

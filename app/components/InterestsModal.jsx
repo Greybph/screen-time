@@ -1,6 +1,6 @@
 import {useFetcher, Form, useTransition} from 'remix'
 import {AiOutlinePlus} from 'react-icons/ai'
-import {useRef, useEffect} from 'react'
+import {useRef, useEffect, useState} from 'react'
 
 function InterestsModal({profile, onClick}) {
   const transition = useTransition()
@@ -8,8 +8,11 @@ function InterestsModal({profile, onClick}) {
   const formRef = useRef()
   const inputRef = useRef()
   const isAdding = 
-    transition.state === 'submitting' &&
-    transition.submission.formData.get('_action') === 'add'
+    transition.state === 'loading' || transition.state === 'submitting' &&
+    transition.submission.formData.get('_action') === 'add' 
+  const isDeleting = 
+    fetcher.state === 'submitting' || fetcher.state == 'loading' &&
+    fetcher.submission.formData.get('_action') === 'delete'
 
   useEffect(() => {
     if (isAdding) {
@@ -28,7 +31,7 @@ function InterestsModal({profile, onClick}) {
             <input ref={inputRef} name="interest" type="text" className="w-full px-3 py-2 rounded-md bg-slate-100 outline-slate-700" />
             <button type='submit' className='ml-2 rounded-md bg-slate-900'>
             <AiOutlinePlus 
-              className='text-4xl text-white'
+              className={`${isAdding && 'animate-spin'} text-4xl text-white`}
             />
             </button>
           </div>
@@ -44,7 +47,9 @@ function InterestsModal({profile, onClick}) {
               {interest}
             </span>
             <button type="submit">
-              <AiOutlinePlus className='text-2xl rotate-45 text-slate-900' />
+              <AiOutlinePlus 
+                className='ml-2 text-2xl rotate-45 text-slate-900'
+              />
             </button>
           </fetcher.Form>
         </li> 
@@ -54,7 +59,7 @@ function InterestsModal({profile, onClick}) {
         className="w-full py-2 mt-4 text-lg tracking-wide text-white rounded-md bg-slate-900 dark:bg-slate-700"
         onClick={onClick}
       >
-        Done
+        {isDeleting ? 'Updating...' : 'Done'}
       </button>
     </main>
   )

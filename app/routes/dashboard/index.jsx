@@ -1,12 +1,10 @@
-import {useContext} from 'react'
-import {useActionData, useLoaderData, Link, useTransition, redirect} from 'remix'
-import {UserContext} from '../../root'
+import {useLoaderData, redirect, Link} from 'remix'
 import saveProfile from '../../utils/saveProfile'
 import Users from '../../models/Users'
 import Shows from '../../models/Shows'
 import ProfilesBlock from '../../components/ProfilesBlock'
 import MyFavoritesBlock from '../../components/MyFavoritesBlock'
-import DiscoverBlock from '../../components/DiscoverBlock'
+import LinkBlock from '../../components/LinkBlock'
 
 export async function action({request}) {
   const data = await request.formData()
@@ -30,17 +28,14 @@ export async function loader({request}) {
 }
 
 function Dashboard() {
-  const transition = useTransition()
-  const action = useActionData()
   const loader = useLoaderData()
-  const userContext = useContext(UserContext)
  
   return (
     <main className='px-8 mt-28'>
       <h1 className="mx-auto mb-8 text-2xl w-fit">Dashboard</h1>
       <ProfilesBlock user={loader.user} />    
       <MyFavoritesBlock user={loader.user} shows={loader.shows} />
-      <DiscoverBlock />
+      <LinkBlock title='Discover' to='/shows' />        
     </main>
   )
 }

@@ -1,7 +1,7 @@
 import { Form, Link, useTransition } from "remix"
 import gsap from 'gsap'
 import {useEffect, useRef, useContext} from 'react'
-import {CgSearch, CgController, CgChevronDown, CgSun, CgSupport} from 'react-icons/cg'
+import {CgSearch, CgController, CgChevronRight, CgSun, CgSupport} from 'react-icons/cg'
 import {UserContext} from '../root'
 
 function NavDropDown({isOpen, onNavigate}) {
@@ -46,7 +46,7 @@ function NavDropDown({isOpen, onNavigate}) {
               <CgController className="text-4xl"/>
               <span className="pl-2 text-lg font-medium">Dashboard</span>
             </span>
-            <CgChevronDown className="mr-4"/>
+            <CgChevronRight className="mr-4"/>
           </Link>
         </li>
         <li title="Browse" className="pr-3 opacity-0">
@@ -55,7 +55,7 @@ function NavDropDown({isOpen, onNavigate}) {
               <CgSun className="text-4xl"/>
               <span className="pl-2 text-lg font-medium">Browse</span>
             </span>
-            <CgChevronDown className="mr-4" />
+            <CgChevronRight className="mr-4" />
           </a>
         </li>
         <li title="Services" className="pr-3 opacity-0">
@@ -64,7 +64,7 @@ function NavDropDown({isOpen, onNavigate}) {
               <CgSupport className="text-4xl"/>
               <span className="pl-2 text-lg font-medium">Services</span>
             </span>
-            <CgChevronDown className="mr-4" />
+            <CgChevronRight className="mr-4" />
           </Link>
         </li>
         {userContext ? (

@@ -1,10 +1,10 @@
 import ShowDisplayCard from './ShowDisplayCard'
 
 
-function LikedShowsList({shows, likes}) {
+function MyFavoritesList({shows, likes}) {
   
   return (
-    <div>
+    <div className='pb-6'>
       {likes.length ? (
       <ul>
         {shows.map(show => {
@@ -18,12 +18,10 @@ function LikedShowsList({shows, likes}) {
         })}
       </ul>
       ) : (
-        <div className='flex flex-col justify-between px-3 py-3 rounded-t-md bg-slate-300'>
-          <span className='self-center block pb-2 text-sm font-bold text-slate-900 font-open'>The shows you like will go here</span>
-        </div>
+        <p className='p-2 mx-6 text-sm text-center rounded-md bg-slate-200 font-open'>The shows you like will go here</p>
       )}
     </div>
   )
 }
 
-export default LikedShowsList
+export default MyFavoritesList
