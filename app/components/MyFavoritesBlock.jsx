@@ -3,7 +3,7 @@ import {AiOutlinePlus} from 'react-icons/ai'
 import {CgChevronDown} from 'react-icons/cg'
 import MyFavoritesList from './MyFavoritesList'
 
-function MyFavoritesBlock({shows, user}) {
+function MyFavoritesBlock({user, favorites}) {
   const [showFavorites, setShowFavorites] = useState(false)
 
   return (
@@ -25,7 +25,7 @@ function MyFavoritesBlock({shows, user}) {
       </div>
       {showFavorites &&
         <MyFavoritesList 
-          shows={shows} 
+          favorites={favorites} 
           likes={user.likes} 
         />
       }

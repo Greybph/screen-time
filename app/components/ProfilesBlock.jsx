@@ -21,7 +21,10 @@ function ProfilesBlock({user}) {
 
   return (
     <>
-      <div className='flex items-center justify-between px-3 py-3 bg-slate-300'>
+      <div
+        onClick={() => setShowProfiles(!showProfiles)} 
+        className='flex items-center justify-between px-3 py-3 bg-slate-300'
+      >
         <span className='text-xl text-slate-900'>Profiles</span>
         
         {user.profiles.length 

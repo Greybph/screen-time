@@ -1,4 +1,4 @@
-import {useLoaderData, redirect, Link} from 'remix'
+import {useLoaderData, redirect, Form} from 'remix'
 import saveProfile from '../../utils/saveProfile'
 import Users from '../../models/Users'
 import Shows from '../../models/Shows'
@@ -20,22 +20,28 @@ export async function loader({request}) {
   }
 
   const user = await Users.findById(userId)
-  const shows = await Shows.find({})
-  return {
-    user: user,
-    shows: shows,
-  }
+  const favorites = await Shows.find({'title': {$in: user.likes}})
+  
+  return { user, favorites }
 }
 
 function Dashboard() {
-  const loader = useLoaderData()
- 
+  const user = useLoaderData().user
+  const favorites = useLoaderData().favorites
+  
   return (
     <main className='px-8 mt-28'>
       <h1 className="mx-auto mb-8 text-2xl w-fit">Dashboard</h1>
-      <ProfilesBlock user={loader.user} />    
-      <MyFavoritesBlock user={loader.user} shows={loader.shows} />
-      <LinkBlock title='Discover' to='/shows' />        
+      <ProfilesBlock user={user} />    
+      <MyFavoritesBlock user={user} favorites={favorites} />
+      <LinkBlock title='Discover' to='/shows' />   
+      <Form action='/logout' method='post'>
+        <button
+          type='submit' 
+          className="w-full py-2 mt-4 text-lg tracking-wide text-white rounded-md bg-slate-900 dark:bg-slate-700">
+          Logout
+        </button> 
+      </Form>
     </main>
   )
 }
