@@ -6,12 +6,23 @@ function LearningGoalsModal({profile}) {
   const [goals, setGoals] = useState(profile.goals)
   const [didUpdate, setDidUpdate] = useState(false)
   const [emptyUpdate, setEmptyUpdate] = useState(false)
-  const [showPopup] = useState(!localStorage.getItem('LEARNING_GOALS_ALERT'))
+  const [redundantUpdate, setRedundantUpdate] = useState(false)
+  const [showPopup] = useState(!localStorage.getItem('LEARNING_GOALS_ALERTED'))
   const fetcher = useFetcher()
 
   useEffect(() => {
-    localStorage.setItem('LEARNING_GOALS_ALERT', true)
+    if (!localStorage.getItem('LEARNING_GOALS_ALERTED'))
+    localStorage.setItem('LEARNING_GOALS_ALERTED', true)
   },[])
+
+  let timeouts = []
+  useEffect(() => {
+    return function cleanUp() {
+      for (let i = 0; i < timeouts.length; i++) {
+        clearTimeout(timeouts[i])
+      }
+    }
+  },[timeouts])
 
   function updateGoals(goal) {
     if (goals.includes(goal)) {
@@ -21,24 +32,33 @@ function LearningGoalsModal({profile}) {
       setGoals(goals => [...goals, goal])
     }
   }
-
+  
   function submitGoals() {
-    if (goals.length  && !goals.every(goal => profile.goals.includes(goal))) {
-      fetcher.submit({goals: goals}, {method: 'post'})
-      setDidUpdate(true)
-      setTimeout(() => setDidUpdate(false), 5000)
-      return 
-    }
     if (!goals.length) {
       setEmptyUpdate(true)
-      setTimeout(() => setEmptyUpdate(false), 5000)
+      let t1 = setTimeout(() => setEmptyUpdate(false), 5000)
+      timeouts.push(t1)
+      return 
+    }
+    if (
+        !goals.every(goal => profile.goals.includes(goal)) ||
+        !profile.goals.every(goal => goals.includes(goal)) 
+      ) 
+    {
+      fetcher.submit({goals: goals}, {method: 'post'})
+      setDidUpdate(true)
+      let t2 = setTimeout(() => setDidUpdate(false), 5000)
+      timeouts.push(t2)
       return 
     }
     if (goals.every(goal => profile.goals.includes(goal))) {
+      setRedundantUpdate(true)
+      let t3 = setTimeout(() => setRedundantUpdate(false), 5000)
+      timeouts.push(t3)
       return
     }
   }
-
+  
   return (
     <main className="w-full px-6 py-6 mx-8 -mt-1 shadow rounded-b-md bg-slate-300">
       {showPopup &&  
@@ -57,12 +77,20 @@ function LearningGoalsModal({profile}) {
           duration={5000}
         />
       }
-      {emptyUpdate && !didUpdate && 
+      {redundantUpdate && !didUpdate &&
         <AlertPopup 
-        type='error' 
-        title='Uh oh...'
-        message={`No learning goals selected`}
-        duration={5000}
+          type='alert' 
+          title='Good to go!'
+          message='Learning goals saved'
+          duration={5000}
+        />
+      }
+      {emptyUpdate && !didUpdate &&
+        <AlertPopup 
+          type='error' 
+          title='Uh oh...'
+          message='No learning goals selected'
+          duration={5000}
         />
       }
       <p className='p-2 mb-4 text-sm text-center rounded-md bg-slate-200 font-open'>Select the goals you wish to set<br />Click Update when finished</p>
