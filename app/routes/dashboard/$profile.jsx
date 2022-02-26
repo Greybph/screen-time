@@ -1,4 +1,5 @@
-import { useLoaderData, useCatch, Link } from "remix"
+import { useLoaderData, useActionData, useTransition, useCatch, Link } from "remix"
+import {useEffect} from 'react'
 import Users from '~/models/Users'
 import Shows from '~/models/Shows'
 import trashIcon from '~/assets/trashIcon.svg'
@@ -6,15 +7,17 @@ import updateGoals from '~/utils/updateGoals'
 import LearningGoalsBlock from "../../components/LearningGoalsBlock"
 import setIcon from "../../utils/setIcon"
 import SuggestionsBlock from "../../components/SuggestionsBlock"
+import AlertPopup from "../../components/AlertPopup"
+import Delay from "../../components/Delay"
 
 export async function action({request, params}) {
   const formData = await request.formData()
   const {goals} = Object.fromEntries(formData)
   const goalsArr = goals.split(',')
-
+  
   updateGoals(goalsArr, request, params)
-
-  return null
+  
+  return true
 }
 
 export async function loader({params, request}) {
@@ -58,11 +61,25 @@ export function CatchBoundary() {
 }
 
 function ProfilePage() {
+  const transition = useTransition()
   const profile = useLoaderData().profile
   const suggestions = useLoaderData().suggestions
-
+  const didUpdate = useActionData() && transition.state === 'idle'
+  const isUpdating = 
+    transition.state === 'submitting' ||
+    transition.state === 'loading'
+    
   return (
     <div className="flex flex-col items-center justify-center px-8 mt-28">
+      {isUpdating && 
+        <Delay delay={300}>
+          <AlertPopup 
+            type='alert'
+            title='Updating...'
+            message='One moment please'
+          />
+        </Delay>
+      }
       <h3 className="text-3xl text-slate-900">{profile.name}</h3>
       <img 
         src={setIcon(profile.icon)} 
@@ -70,12 +87,16 @@ function ProfilePage() {
         className='w-20 py-4'
       />
       <LearningGoalsBlock profile={profile} />
-      <SuggestionsBlock profile={profile} suggestions={suggestions} />
+      <SuggestionsBlock 
+        didUpdate={didUpdate}
+        profile={profile}
+        suggestions={suggestions} 
+      />
 
       <Link 
         to='/dashboard'
         className='w-full py-2 my-4 text-lg tracking-wide text-center text-white rounded-md bg-slate-900 dark:bg-slate-700'
-      >
+        >
         Back
       </Link>
     </div>

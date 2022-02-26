@@ -2,12 +2,10 @@ import {AiOutlinePlus} from 'react-icons/ai'
 import {CgChevronDown} from 'react-icons/cg'
 import LearningGoalsModal from './LearningGoalsModal'
 import {useState, useEffect} from 'react'
-import {useFetcher} from 'remix'
 
 function LearningGoalsBlock({profile}) {
   const [openModal, setOpenModal] = useState(false)
-  const transition = useFetcher()
-
+  
   return (
     <>
       <div
@@ -20,7 +18,12 @@ function LearningGoalsBlock({profile}) {
           <CgChevronDown className='text-2xl text-slate-900' />
         }
       </div>
-      {openModal && <LearningGoalsModal profile={profile} />}
+      {openModal && 
+        <LearningGoalsModal 
+          profile={profile} 
+          closeModal={() => setOpenModal(false)} 
+        />
+      }
     </>
   )
 }

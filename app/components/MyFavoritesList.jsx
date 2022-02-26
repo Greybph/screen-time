@@ -1,11 +1,11 @@
 import ShowDisplayCard from './ShowDisplayCard'
 
 
-function MyFavoritesList({favorites, likes}) {
+function MyFavoritesList({favorites}) {
   
   return (
     <div className='pb-6'>
-      {likes.length ? (
+      {favorites.length ? (
       <ul>
         {favorites.map(show => (
           <li key={show._id}>

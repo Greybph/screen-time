@@ -26,7 +26,6 @@ function MyFavoritesBlock({user, favorites}) {
       {showFavorites &&
         <MyFavoritesList 
           favorites={favorites} 
-          likes={user.likes} 
         />
       }
     </div>

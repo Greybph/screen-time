@@ -1,14 +1,13 @@
 import {useState, useEffect} from 'react'
-import { useFetcher } from 'remix'
+import { useFetcher, useSubmit } from 'remix'
 import AlertPopup from './AlertPopup'
 
-function LearningGoalsModal({profile}) {
+function LearningGoalsModal({profile, closeModal}) {
   const [goals, setGoals] = useState(profile.goals)
-  const [didUpdate, setDidUpdate] = useState(false)
   const [emptyUpdate, setEmptyUpdate] = useState(false)
-  const [redundantUpdate, setRedundantUpdate] = useState(false)
   const [showPopup] = useState(!localStorage.getItem('LEARNING_GOALS_ALERTED'))
   const fetcher = useFetcher()
+  const submit = useSubmit()
 
   useEffect(() => {
     if (!localStorage.getItem('LEARNING_GOALS_ALERTED'))
@@ -18,9 +17,7 @@ function LearningGoalsModal({profile}) {
   let timeouts = []
   useEffect(() => {
     return function cleanUp() {
-      for (let i = 0; i < timeouts.length; i++) {
-        clearTimeout(timeouts[i])
-      }
+      clearTimeout(timeouts[0])
     }
   },[timeouts])
 
@@ -36,27 +33,20 @@ function LearningGoalsModal({profile}) {
   function submitGoals() {
     if (!goals.length) {
       setEmptyUpdate(true)
-      let t1 = setTimeout(() => setEmptyUpdate(false), 5000)
+      let t1 = setTimeout(() => setEmptyUpdate(false), 4000)
       timeouts.push(t1)
       return 
     }
     if (
-        !goals.every(goal => profile.goals.includes(goal)) ||
-        !profile.goals.every(goal => goals.includes(goal)) 
+      !goals.every(goal => profile.goals.includes(goal)) ||
+      !profile.goals.every(goal => goals.includes(goal)) 
       ) 
-    {
-      fetcher.submit({goals: goals}, {method: 'post'})
-      setDidUpdate(true)
-      let t2 = setTimeout(() => setDidUpdate(false), 5000)
-      timeouts.push(t2)
-      return 
+      {
+        submit({goals: goals}, {method: 'post'})
+        closeModal()
+        return
     }
-    if (goals.every(goal => profile.goals.includes(goal))) {
-      setRedundantUpdate(true)
-      let t3 = setTimeout(() => setRedundantUpdate(false), 5000)
-      timeouts.push(t3)
-      return
-    }
+    return closeModal()
   }
   
   return (
@@ -69,23 +59,7 @@ function LearningGoalsModal({profile}) {
           duration={5000}
         />
       }
-      {didUpdate && 
-        <AlertPopup 
-          type='success' 
-          title='Learning Goals Updated!'
-          message={`${profile.name} has new suggestions`}
-          duration={5000}
-        />
-      }
-      {redundantUpdate && !didUpdate &&
-        <AlertPopup 
-          type='alert' 
-          title='Good to go!'
-          message='Learning goals saved'
-          duration={5000}
-        />
-      }
-      {emptyUpdate && !didUpdate &&
+      {emptyUpdate && 
         <AlertPopup 
           type='error' 
           title='Uh oh...'
