@@ -22,7 +22,14 @@ function ProfilesBlock({user}) {
   return (
     <>
       <div
-        onClick={() => setShowProfiles(!showProfiles)} 
+        onClick={user.profiles.length ? 
+          openCreateProfile ?
+            () => setOpenCreateProfile(false)
+          :
+            () => setShowProfiles(!showProfiles)
+        :
+          () => setOpenCreateProfile(!openCreateProfile)
+      } 
         className='flex items-center justify-between px-3 py-3 bg-slate-300'
       >
         <span className='text-xl text-slate-900'>Profiles</span>
@@ -31,7 +38,7 @@ function ProfilesBlock({user}) {
           ? 
             showProfiles ?
               <AiOutlineClose
-                className='text-xl'  
+                className={`${openCreateProfile ? 'translate-y-10' : ''} text-2xl text-slate-900 transition-transform duration-300`}  
                 onClick={openCreateProfile ? 
                   () => setOpenCreateProfile(false) : 
                   () => setShowProfiles(false)
@@ -43,16 +50,15 @@ function ProfilesBlock({user}) {
                 onClick={() => setShowProfiles(true)}
               /> 
           : <AiOutlinePlus
-              className='text-xl text-slate-900' 
+              className={`${openCreateProfile ? 'rotate-45 translate-y-10' : ''} text-2xl text-slate-900 transition-transform duration-300`}
               onClick={() => {setOpenCreateProfile(!openCreateProfile)}}
             /> 
         }
         
       </div>
+      {openCreateProfile && <AddProfileModal onClick={() => setOpenCreateProfile(false)}/>} 
     
-      {openCreateProfile && <AddProfileModal onClick={() => setOpenCreateProfile(false)}/>}
-    
-      {showProfiles && 
+      {showProfiles && !openCreateProfile &&
         <ProfilesList 
           profiles={user?.profiles} 
           onClick={() => setOpenCreateProfile(true)}

@@ -6,7 +6,7 @@ function LinkBlock({title, to}) {
   
   return (
     <Link 
-        className='flex items-center justify-between px-3 py-3 bg-slate-300'
+        className='flex items-center justify-between px-3 py-3 mt-4 bg-slate-300'
         to={to}
       >
       <span className='text-xl text-slate-900'>{title}</span>

@@ -21,7 +21,7 @@ function SuggestionsBlock({profile, suggestions, didUpdate}) {
     <>
       <div
         onClick={handleClick} 
-        className='relative flex items-center justify-between w-full px-3 py-3 mt-10 rounded-md bg-slate-300'
+        className='relative flex items-center justify-between w-full px-3 py-3 mt-4 rounded-md bg-slate-300'
       >
         <span className='text-xl text-slate-900'>Suggestions</span>
         {openSuggestions ? 

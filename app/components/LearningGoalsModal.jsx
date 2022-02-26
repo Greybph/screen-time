@@ -42,7 +42,7 @@ function LearningGoalsModal({profile, closeModal}) {
       !profile.goals.every(goal => goals.includes(goal)) 
       ) 
       {
-        submit({goals: goals}, {method: 'post'})
+        submit({goals: goals}, {method: 'post', replace: true})
         closeModal()
         return
     }

@@ -6,7 +6,6 @@ function ProfilesList({profiles, onClick}) {
 
   return (
     <div 
-      onClick={onClick}  
       className='text-xl border-t text-slate-900 bg-slate-300 border-slate-300'
     >
       {profiles.map((profile , idx)=> (
@@ -22,7 +21,10 @@ function ProfilesList({profiles, onClick}) {
         </Link>
       )
       )}
-      <div className='flex items-center justify-between px-3 py-3 bg-slate-400'>
+      <div 
+        className='flex items-center justify-between px-3 py-3 bg-slate-400'
+        onClick={onClick}  
+      >
         <span>Add Profile</span>
         <AiOutlinePlus className='text-2xl' />
       </div>

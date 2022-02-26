@@ -19,7 +19,7 @@ function AddProfileModal({onClick}) {
   return (
     <Form 
     method="post" 
-    className="fixed left-0 z-10 px-10 py-8 mx-8 shadow top-40 rounded-b-md bg-slate-300">
+    className="px-10 py-8 shadow rounded-b-md bg-slate-300">
         <input type="hidden" name="userId" value={userContext?._id} />
         <div className="space-y-4">
           <h1 className="relative text-2xl text-center text-slate-900 dark:text-white">Add Profile</h1>

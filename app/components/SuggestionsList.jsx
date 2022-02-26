@@ -3,8 +3,8 @@ import ShowDisplayCard from './ShowDisplayCard'
 function SuggestionsList({profile, suggestions}) {
   
   return (
-    <div className='w-full pb-6 bg-slate-300'>
-      {suggestions ? (
+    <div className='w-full pb-6 -mt-1 bg-slate-300'>
+      {suggestions.length ? (
       <ul>
         {suggestions.map(show => (
           <li key={show._id}>
@@ -13,7 +13,7 @@ function SuggestionsList({profile, suggestions}) {
         ))}
       </ul>
       ) : (
-        <p className='p-2 mx-6 text-sm text-center rounded-md bg-slate-200 font-open'>The shows we suggest for {profile.name} will go here</p>
+        <p className='p-2 mx-6 text-sm text-center rounded-md bg-slate-200 font-open'>Currently no suggestions<br/>Try adding some Learning Goals for <strong>{profile.name}</strong></p>
       )}
     </div>
   )
