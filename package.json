@@ -11,8 +11,10 @@
     "watch:css": "tailwindcss -i app/styles/input.css -o app/styles/tailwind.css --watch"
   },
   "dependencies": {
+    "@cloudinary/react": "^1.1.0",
     "@remix-run/react": "^1.1.1",
     "@remix-run/serve": "^1.1.1",
+    "axios": "^0.26.0",
     "clsx": "^1.1.1",
     "gsap": "^3.9.1",
     "mongoose": "^6.1.8",
