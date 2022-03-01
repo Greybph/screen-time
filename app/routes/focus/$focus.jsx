@@ -23,10 +23,14 @@ function $FocusPage() {
 
   return (
     <div className='flex flex-col items-center justify-center px-10 mt-28'>
-      <h3 className='text-3xl text-center text-slate-900'>{focus}</h3>
-      {shows.map(show => 
-        <ShowDisplayCard waitForLoad={false} key={show._id} likeButton={false} show={show} />
-      )}
+      <h3 className='mb-6 text-3xl text-center text-slate-900'>{focus}</h3>
+      <ul>
+        {shows.map(show => (
+          <li key={show._id}>
+            <ShowDisplayCard show={show} likeButton={false} />
+          </li>
+        ))}
+      </ul>
     </div>
   )
 }

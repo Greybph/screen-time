@@ -7,21 +7,21 @@ export async function loader() {
   return shows
 }
 
-function FocusPage() {
+function AgesPage() {
   const shows = useLoaderData()
-  const focuses = ['Curiosity', 'Literacy', 'Social skills']
+  const ages = [3, 4, 5]
 
   return (
     <div className='flex flex-col items-center justify-center px-10 mt-28'>
-      <h3 className='mb-6 text-3xl text-center text-slate-900'>Teaching focus</h3>
-      {focuses.map(focus => 
+      <h3 className='mb-6 text-3xl text-center text-slate-900'>Ages</h3>
+      {ages.map(age => 
         <FocusBlock 
-          focus={focus} 
-          shows={shows.filter(s => s.focus.includes(focus.toLowerCase()))} 
+          focus={age} 
+          shows={shows.filter(s => s.ages.includes(age))} 
         />
       )}
     </div>
   )
 }
 
-export default FocusPage
+export default AgesPage

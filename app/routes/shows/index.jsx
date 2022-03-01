@@ -36,7 +36,7 @@ function Browse() {
       >
         Discover the shows that fit your child's needs.
       </h3>
-      <h3 className='py-4 mt-20 text-2xl tracking-wide text-slate-900 dark:text-white'>Focus</h3>
+      <Link to='/focus' className='py-4 mt-20 text-2xl tracking-wide text-slate-900 dark:text-white'>Focus</Link>
       <p 
         className='pb-4 tracking-wide text-slate-800 dark:text-slate-400'
       >

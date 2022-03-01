@@ -1,6 +1,6 @@
 import {IoIosArrowBack, IoIosArrowForward} from 'react-icons/io'
 import {useState, useEffect} from 'react'
-
+import {Link} from 'remix'
 function InfoSlider({show, info}) {
   const [sliderIndex, setSliderIndex] = useState(0)
   const [sliderText, setSliderText] = useState(info[sliderIndex])
@@ -33,7 +33,9 @@ function InfoSlider({show, info}) {
       <span 
         className={`${info === show.focus ? 'w-full' : 'w-1/3'} text-xl text-center text-slate-900 dark:text-white whitespace-nowrap`}
       >
-        {sliderText}
+        <Link to={`/focus/${sliderText}`}>
+          {sliderText}
+        </Link>
       </span>
       <IoIosArrowForward 
         onClick={handleRightClick}
