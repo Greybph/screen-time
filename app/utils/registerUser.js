@@ -13,8 +13,8 @@ export default async function registerUser(values) {
     return {error: "Please provide a username"}
   }
 
-  if (values.email === '' || !values.email.includes('@')) {
-    return {error: 'Invalid email address'}
+  if (!values.email.match(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/)) {
+    return {error: "Please provide a valid email"}
   }
 
   if (values.password.length < 4) {

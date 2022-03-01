@@ -16,6 +16,7 @@
     "@remix-run/serve": "^1.1.1",
     "axios": "^0.26.0",
     "clsx": "^1.1.1",
+    "dotenv": "^16.0.0",
     "gsap": "^3.9.1",
     "mongoose": "^6.1.8",
     "password-hash": "^1.2.2",

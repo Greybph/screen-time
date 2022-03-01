@@ -1,4 +1,4 @@
-import {useLoaderData, redirect, Form} from 'remix'
+import {useLoaderData, redirect, Form, useFetcher} from 'remix'
 import {useState, useEffect} from 'react'
 import saveProfile from '../../utils/saveProfile'
 import Users from '../../models/Users'
@@ -9,11 +9,12 @@ import LinkBlock from '../../components/LinkBlock'
 import AlertPopup from '~/components/AlertPopup'
 import Axios from 'axios'
 import dog from '~/assets/dogIcon.svg'
+import Delay from '~/components/Delay'
 
 export async function action({request}) {
   const data = await request.formData()
   const {...values} = Object.fromEntries(data)
-
+  
   return saveProfile(values)  
 }
 
@@ -34,39 +35,40 @@ function Dashboard() {
   const user = useLoaderData().user
   const favorites = useLoaderData().favorites
   const [imageId, setImageId] = useState(false)
-  const [imageDidLoad, setImageDidLoad] = useState(false)
   const [updatingImage, setUpdatingImage] = useState(false)
   const [invalidImage, setInvalidImage] = useState(false)
-  let imgUrl = 'https://res.cloudinary.com/dpnkrz8c8/image/upload/c_thumb,g_face,w_85,h_85,r_max/v1645945686/'
+  let baseUrl = 'https://res.cloudinary.com/dpnkrz8c8/image/upload/c_thumb,g_face,w_85,h_85,r_max/v1645945686/'
   
   useEffect(() => {
+
     setImageId(localStorage.getItem('imageId'))
   },[])
 
-  function uploadImage(files) {
+  async function uploadImage(files) {
     const path = files[0].name.split('.')
 
     switch (path[path.length - 1]) {
       case 'jpg':
       case 'png':
       case 'svg':
+      case 'jpeg':
         break
       default :
-        setInvalidImage(true)
-        break
+        return setInvalidImage(true)
     }
+
     setUpdatingImage(true)
     const formData = new FormData()
     formData.append("file", files[0])
     formData.append("upload_preset", 'owdo4rra')
-    Axios.post(
+    
+    const response = await Axios.post(
       "https://api.cloudinary.com/v1_1/dpnkrz8c8/image/upload", 
       formData
-    ).then(res => {
-      setImageId(res.data.public_id + '.png')
-      localStorage.setItem('imageId', res.data.public_id + '.png')
-      setUpdatingImage(false)
-    })
+      )
+      
+    setImageId(response.data.public_id + '.png')
+    localStorage.setItem('imageId', response.data.public_id + '.png')
   }  
   
   return (
@@ -79,13 +81,22 @@ function Dashboard() {
           duration={5000}
         />
       }
+      {updatingImage && 
+        <AlertPopup 
+          type='alert'
+          title='Updating picture...'
+          message='One moment please'
+          duration={5000}
+        />
+      }
       <h1 className="mb-4 text-3xl text-center text-slate-900">Dashboard</h1>
 
-      <label htmlFor="avatarFile">
-      <img  
-        src={imageId ? imgUrl + imageId : dog} alt="profile picture" 
-        className={`${imageDidLoad ? '' : 'h-20'} ${updatingImage && 'animate-pulse'} mx-auto mb-3`}
-      />
+      <label htmlFor="avatarFile">  
+        <img  
+          onLoad={() => setUpdatingImage(false)}
+          src={imageId ? baseUrl + imageId : dog} alt="profile picture" 
+          className={`${updatingImage && 'animate-pulse'} h-20 mx-auto mb-3`}
+        />
       </label>
       <input
         className='hidden' 

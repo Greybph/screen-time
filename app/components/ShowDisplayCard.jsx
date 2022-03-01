@@ -3,11 +3,11 @@ import { useState, useEffect } from 'react'
 import { Link } from 'remix'
 import LikeButton from './LikeButton'
 
-function ShowDisplayCard({show, likeButton = true}) {
+function ShowDisplayCard({show, likeButton = true, waitForLoad = true}) {
   const [hideFocus, setHideFocus] = useState(true)
   const [imageLoaded, setImageLoaded] = useState(false)
   const focuses = show.focus
- 
+
   return (
     <div className="flex flex-col mx-auto mt-6 w-72">
       <div className='relative'> 
@@ -21,7 +21,12 @@ function ShowDisplayCard({show, likeButton = true}) {
                 key={idx}
                 className='text-2xl text-slate-900 dark:text-white'
               >
-                {focus}
+                <Link 
+                  onClick={() => setHideFocus(true)} 
+                  to={`/focus/${focus}`}
+                >
+                  {focus}
+                </Link>
               </li>
             )} 
           </ul>
@@ -35,8 +40,8 @@ function ShowDisplayCard({show, likeButton = true}) {
           />
         </Link>
       </div>
-      <div hidden={likeButton && !imageLoaded}>
-        <div className='flex justify-between w-full bg-white shadow rounded-b-md dark:bg-slate-700 '>
+      <div hidden={waitForLoad ? !imageLoaded : false}>
+        <div className='flex justify-between w-full bg-white shadow rounded-b-md dark:bg-slate-700'>
           <button 
             onClick={() => setHideFocus(!hideFocus)}
             className='px-3 py-2 rounded-bl-md '

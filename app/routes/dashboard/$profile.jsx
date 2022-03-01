@@ -1,5 +1,4 @@
 import { useLoaderData, useActionData, useTransition, useCatch, Link } from "remix"
-import {useEffect} from 'react'
 import Users from '~/models/Users'
 import Shows from '~/models/Shows'
 import trashIcon from '~/assets/trashIcon.svg'
@@ -72,7 +71,7 @@ function ProfilePage() {
   return (
     <div className="flex flex-col items-center justify-center px-8 mt-28">
       {isUpdating && 
-        <Delay delay={300}>
+        <Delay delay={500}>
           <AlertPopup 
             type='alert'
             title='Updating...'
@@ -99,6 +98,7 @@ function ProfilePage() {
         >
         Back
       </Link>
+
     </div>
   )
 }
