@@ -13,6 +13,7 @@ import tailwindUrl from './styles/tailwind.css'
 import { useEffect, useState, createContext } from "react";
 import mongoose from 'mongoose'
 import Users from './models/Users'
+import Shows from './models/Shows'
 import Clip from "./components/Clip";
 
 export function meta() {
@@ -26,24 +27,25 @@ export function links() {
 export const UserContext = createContext()
 
 export async function loader({request}) {
-  console.log("ROOT LOADER CALLED")
   mongoose.connect('mongodb://localhost/screen_time', {
     useNewUrlParser: true,
     useUnifiedTopology: true
   })
+  const shows = await Shows.find({})
   const userId = await request.headers.get('Cookie')
   
-  if (userId === 'clear') {
-    return null
-  }
+  if (userId === 'clear') return {shows}
 
   const user = await Users.findById(userId)
+  
+  if (!user) return {shows}
 
-  return user 
+  return {user, shows}
  }
  
 export default function App() {
-  const user = useLoaderData()
+  const data = useLoaderData()
+  
   const [darkMode, setDarkMode] = useState(false)
 
   useEffect(() => {
@@ -64,13 +66,15 @@ export default function App() {
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width,initial-scale=1" />
+        <link rel='icon' href='/favicon.jpg' />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" />
-        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Open+Sans:wght@500&display=swap" rel="stylesheet" />        <Links />
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Open+Sans:wght@500&display=swap" rel="stylesheet" />        
+        <Links />
       </head>
       <body className= "transition-colors duration-1000 delay-300 bg-emerald-50 font-mont dark:bg-slate-900">
-        <UserContext.Provider value={user}>
-          <Navbar darkMode={() => setDarkMode(!darkMode)} />
+        <UserContext.Provider value={data?.user}>
+          <Navbar darkMode={() => setDarkMode(!darkMode)} shows={data?.shows} />
           <Clip />
           <Outlet />
         </UserContext.Provider>

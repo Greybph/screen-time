@@ -28,7 +28,7 @@ export async function loader({request}) {
 
 function Browse() {
   const data = useLoaderData()
- 
+
   return (
     <div className='flex flex-col items-start px-10 mt-28'>
       <h3 
@@ -44,7 +44,7 @@ function Browse() {
       </p>
       <FocusSelect shows={data.shows} />
       <div className='w-full my-10 border-2 border-slate-300'></div>
-      <h3 className='pb-4 text-2xl tracking-wide text-slate-900 dark:text-white'>Age</h3>
+      <Link to='/ages' className='pb-4 text-2xl tracking-wide text-slate-900 dark:text-white'>Age</Link>
       <p 
         className='pb-4 tracking-wide text-slate-800 dark:text-slate-400'
       >

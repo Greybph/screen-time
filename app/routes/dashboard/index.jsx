@@ -8,7 +8,7 @@ import MyFavoritesBlock from '../../components/MyFavoritesBlock'
 import LinkBlock from '../../components/LinkBlock'
 import AlertPopup from '~/components/AlertPopup'
 import Axios from 'axios'
-import dog from '~/assets/dogIcon.svg'
+import catIcon from '~/assets/catIcon.svg'
 import Delay from '~/components/Delay'
 
 export async function action({request}) {
@@ -94,7 +94,7 @@ function Dashboard() {
       <label htmlFor="avatarFile">  
         <img  
           onLoad={() => setUpdatingImage(false)}
-          src={imageId ? baseUrl + imageId : dog} alt="profile picture" 
+          src={imageId ? baseUrl + imageId : catIcon} alt="profile picture" 
           className={`${updatingImage && 'animate-pulse'} h-20 mx-auto mb-3`}
         />
       </label>

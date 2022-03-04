@@ -3,16 +3,16 @@ import { Link } from "remix"
 import{ VscMenu, VscClose} from 'react-icons/vsc'
 import NavDropDown from './NavDropDown'
 import {FaRegLightbulb} from 'react-icons/fa'
+import clsx from "clsx"
 
 
-function Navbar({darkMode}) {
+function Navbar({darkMode, shows}) {
   const [menuOpen, setMenuOpen] = useState(false)
-  
+
   return (
     <>
       <nav className="fixed top-0 z-50 flex justify-between w-screen px-4 py-3 mt-3 bg-transparent">
         <Link to='' onClick={() => setMenuOpen(false)} className="text-xl font-extrabold transition-colors duration-700 delay-500 text-slate-900 dark:text-emerald-300 font-mont">screenTime</Link>
-       
         <ul className="flex items-center lg:hidden">
           <li className="flex mr-2">
             <button onClick={darkMode} className="bg-transparent rounded-full ">
@@ -36,7 +36,7 @@ function Navbar({darkMode}) {
           <li>Three</li>
         </ul>
       </nav>
-      <NavDropDown isOpen={menuOpen} onNavigate={() => setMenuOpen(!menuOpen)} darkMode={darkMode}/> 
+      <NavDropDown shows={shows} isOpen={menuOpen} onNavigate={() => setMenuOpen(!menuOpen)} darkMode={darkMode}/> 
     </>
   )
 }

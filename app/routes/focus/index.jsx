@@ -15,7 +15,8 @@ function FocusPage() {
     <div className='flex flex-col items-center justify-center px-10 mt-28'>
       <h3 className='mb-6 text-3xl text-center text-slate-900'>Teaching focus</h3>
       {focuses.map(focus => 
-        <FocusBlock 
+        <FocusBlock
+          key={focus} 
           focus={focus} 
           shows={shows.filter(s => s.focus.includes(focus.toLowerCase()))} 
         />

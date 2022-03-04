@@ -16,6 +16,7 @@ function AgesPage() {
       <h3 className='mb-6 text-3xl text-center text-slate-900'>Ages</h3>
       {ages.map(age => 
         <FocusBlock 
+          key={age}
           focus={age} 
           shows={shows.filter(s => s.ages.includes(age))} 
         />

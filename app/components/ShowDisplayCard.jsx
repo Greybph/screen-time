@@ -3,13 +3,18 @@ import { useState, useEffect } from 'react'
 import { Link } from 'remix'
 import LikeButton from './LikeButton'
 
-function ShowDisplayCard({show, likeButton = true}) {
+function ShowDisplayCard({show, likeButton = true, onNavigate}) {
   const [hideFocus, setHideFocus] = useState(true)
   const [imageLoaded, setImageLoaded] = useState(false)
   const focuses = show.focus
 
+  function handleClick() {
+    setHideFocus(true)
+    onNavigate()
+  }
+
   return (
-    <div hidden={!imageLoaded} className="flex flex-col mx-auto mt-6 w-72">
+    <div className="flex flex-col px-4 mx-auto mt-6 w-fit">
       <div className='relative'> 
         <div 
         hidden={hideFocus} 
@@ -19,10 +24,10 @@ function ShowDisplayCard({show, likeButton = true}) {
             {focuses.map((focus, idx )=> 
               <li 
                 key={idx}
-                className='text-2xl text-slate-900 dark:text-white'
+                className='text-xl text-slate-900 dark:text-white'
               >
                 <Link 
-                  onClick={() => setHideFocus(true)} 
+                  onClick={handleClick} 
                   to={`/focus/${focus}`}
                 >
                   {focus}
@@ -31,7 +36,10 @@ function ShowDisplayCard({show, likeButton = true}) {
             )} 
           </ul>
         </div>
-        <Link to={`/shows/${show.title.replaceAll(" ", "-")}`}>
+        <Link 
+          to={`/shows/${show.title.replaceAll(" ", "-")}`}
+          onClick={handleClick}
+        >
           <img 
             src={show.image} 
             alt={`${show.title} title image`} 
@@ -40,7 +48,7 @@ function ShowDisplayCard({show, likeButton = true}) {
           />
         </Link>
       </div>
-      <div >
+      <div hidden={!imageLoaded} >
         <div className='flex justify-between w-full bg-white shadow rounded-b-md dark:bg-slate-700'>
           <button 
             onClick={() => setHideFocus(!hideFocus)}

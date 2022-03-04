@@ -19,14 +19,10 @@ function AddProfileModal({onClick}) {
   return (
     <Form 
     method="post" 
-    className="px-10 py-8 shadow rounded-b-md bg-slate-300">
+    className="px-10 py-8 -mt-2 shadow rounded-b-md bg-slate-300">
         <input type="hidden" name="userId" value={userContext?._id} />
         <div className="space-y-4">
           <h1 className="relative text-2xl text-center text-slate-900 dark:text-white">Add Profile</h1>
-      <AiOutlinePlus 
-        className='absolute top-0 text-2xl rotate-45 right-6' 
-        onClick={onClick}
-      />
           <div> 
             <input type="hidden" name="gender" value={selectGender} />
             <div className='flex justify-evenly'>
@@ -57,24 +53,24 @@ function AddProfileModal({onClick}) {
           <div className='flex flex-col justify-evenly'>
             <label htmlFor="age" className="block mb-1 font-semibold text-gray-600 dark:text-slate-400">Icon</label>
             <input type="hidden" name="icon" value={selectIcon} />
-            <div className='flex py-2 justify-evenly'>
+            <div className='flex py-2 mx-auto justify-evenly w-fit'>
               <img 
-                className={`${selectIcon === 'cat' && 'scale-125'} w-20 p-2 rounded-lg`} 
+                className={`${selectIcon === 'cat' && 'scale-125'} p-2 rounded-lg`} 
                 src={catIcon} alt="Cat icon" 
                 onClick={() => setSelectIcon("cat")}
               />
               <img 
-                className={`${selectIcon === 'dog' && 'scale-125 scale'} w-20 p-2 rounded-lg`} 
+                className={`${selectIcon === 'dog' && 'scale-125 scale'} w-fit p-2 rounded-lg`} 
                 src={dogIcon} alt="Dog icon" 
                 onClick={() => setSelectIcon("dog")}
               />
               <img 
-                className={`${selectIcon === 'panda' && 'scale-125'} w-20 p-2 rounded-lg`} 
+                className={`${selectIcon === 'panda' && 'scale-125'} w-fit p-2 rounded-lg`} 
                 src={pandaIcon} alt="Panda icon" 
                 onClick={() => setSelectIcon("panda")}
               />
               <img 
-                className={`${selectIcon === 'pig' && 'scale-125'} w-20 p-2 rounded-lg`} 
+                className={`${selectIcon === 'pig' && 'scale-125'} w-fit p-2 rounded-lg`} 
                 src={pigIcon} alt="Pig icon" 
                 onClick={() => setSelectIcon("pig")}
               />
