@@ -30,7 +30,7 @@ function ProfilesBlock({user}) {
         :
           () => setOpenCreateProfile(!openCreateProfile)
       } 
-        className='flex items-center justify-between px-3 py-3 bg-slate-300'
+        className='flex items-center justify-between px-3 py-3 rounded bg-slate-300'
       >
         <span className='text-xl text-slate-900'>Profiles</span>
         

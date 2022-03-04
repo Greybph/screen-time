@@ -45,16 +45,16 @@ function Title() {
   
     return (
       <div className='flex flex-col items-center justify-center px-10 mt-32'>
-        <h1 className='mb-4 text-3xl text-center text-slate-900 dark:text-white'>{show?.title}</h1>
+        <h1 className='mb-4 text-3xl text-center transition-colors duration-700 delay-500 text-slate-900 dark:text-white'>{show?.title}</h1>
         <img 
           src={show.image} alt={`${show.title} title image`}
           className="mb-2 rounded-md w-72"
         />
         <InfoSlider show={show} info={show.focus} />
-        <p className='leading-8 tracking-wide text-center text-slate-900 dark:text-slate-400'>{show?.description}</p>
+        <p className='leading-8 tracking-wide text-center transition-colors duration-700 delay-500 text-slate-900 dark:text-slate-400'>{show?.description}</p>
         <Link 
           to='/shows'
-          className='w-full py-2 my-4 text-lg tracking-wide text-center text-white rounded-md bg-slate-900 dark:bg-slate-700'
+          className='w-full py-2 my-4 text-lg tracking-wide text-center text-white transition-colors duration-700 delay-500 rounded-md bg-slate-900 dark:bg-slate-700'
         >
           Discover More
         </Link>

@@ -13,7 +13,7 @@ function FocusPage() {
 
   return (
     <div className='flex flex-col items-center justify-center px-10 mt-28'>
-      <h3 className='mb-6 text-3xl text-center text-slate-900'>Teaching focus</h3>
+      <h3 className='mb-6 text-3xl text-center transition-colors duration-700 delay-500 text-slate-900 dark:text-white'>Teaching focus</h3>
       {focuses.map(focus => 
         <FocusBlock
           key={focus} 

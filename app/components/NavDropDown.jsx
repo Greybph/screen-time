@@ -1,9 +1,9 @@
 import { Form, Link, useTransition } from "remix"
 import gsap from 'gsap'
 import {useEffect, useRef, useContext, useState} from 'react'
-import {CgController, CgChevronRight, CgChevronDown, CgSun, CgSupport} from 'react-icons/cg'
+import {CgController, CgChevronRight, CgChevronDown, CgSearch, CgInfo} from 'react-icons/cg'
 import {UserContext} from '../root'
-import { CgSearch } from "react-icons/cg"
+import {RiMovie2Line} from 'react-icons/ri'
 import ShowDisplayCard from './ShowDisplayCard'
 import SubMenu from './Submenu'
 
@@ -77,7 +77,7 @@ function NavDropDown({isOpen, onNavigate, shows}) {
         <li title="Dashboard" className="pr-3 opacity-0">
           <Link to='/dashboard' onClick={onNavigate} className="flex items-center justify-between py-3 border-b cursor-pointer">
             <span className="flex items-center justify-center">
-              <CgController className="text-4xl"/>
+              <CgController className="text-4xl rotate-45"/>
               <span className="pl-2 text-lg">Dashboard</span>
             </span>
             <CgChevronRight className="mr-4"/>
@@ -89,7 +89,7 @@ function NavDropDown({isOpen, onNavigate, shows}) {
             className={`${showSubMenu ? '' : 'border-b'} flex items-center justify-between py-3 cursor-pointer`}
           >
             <span className="flex items-center justify-center">
-              <CgSun className="text-4xl"/>
+              <RiMovie2Line className="text-4xl"/>
               <span className="pl-2 text-lg">Shows</span>
             </span>
             <CgChevronDown className={`${showSubMenu ? 'rotate-180' : ''} transition-transform duration-300 mr-4`} />
@@ -102,7 +102,7 @@ function NavDropDown({isOpen, onNavigate, shows}) {
         <li title="Learn More" className="pr-3 opacity-0">
           <Link to='/about' onClick={onNavigate} className="flex items-center justify-between py-3 border-b cursor-pointer">
             <span className="flex items-center justify-center">
-              <CgController className="text-4xl"/>
+              <CgInfo className="text-4xl"/>
               <span className="pl-2 text-lg">About</span>
             </span>
             <CgChevronRight className="mr-4"/>

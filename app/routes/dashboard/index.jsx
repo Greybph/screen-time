@@ -89,7 +89,7 @@ function Dashboard() {
           duration={5000}
         />
       }
-      <h1 className="mb-4 text-3xl text-center text-slate-900">Dashboard</h1>
+      <h1 className="mb-4 text-3xl tracking-wide text-center transition-colors duration-700 delay-500 text-slate-900 dark:text-white">Dashboard</h1>
 
       <label htmlFor="avatarFile">  
         <img  
@@ -110,7 +110,7 @@ function Dashboard() {
       <Form action='/logout' method='post'>
         <button
           type='submit' 
-          className="w-full py-2 mt-4 text-lg tracking-wide text-white rounded-md bg-slate-900 dark:bg-slate-700"
+          className="w-full py-2 mt-4 text-lg tracking-wide text-white transition-colors duration-700 delay-500 rounded-md bg-slate-900 dark:bg-slate-700"
         >
           Logout
         </button> 

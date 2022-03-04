@@ -13,7 +13,7 @@ function AgesPage() {
 
   return (
     <div className='flex flex-col items-center justify-center px-10 mt-28'>
-      <h3 className='mb-6 text-3xl text-center text-slate-900'>Ages</h3>
+      <h3 className='mb-6 text-3xl text-center transition-colors duration-700 delay-500 dark:text-white text-slate-900'>Ages</h3>
       {ages.map(age => 
         <FocusBlock 
           key={age}
