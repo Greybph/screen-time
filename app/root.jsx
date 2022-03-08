@@ -69,8 +69,7 @@ export default function App() {
         <link rel='icon' href='/favicon.jpg' />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" />
-        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Open+Sans:wght@500&display=swap" rel="stylesheet" />        
-        <Links />
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet" />        <Links />
       </head>
       <body className= "transition-colors duration-1000 delay-300 bg-emerald-50 font-mont dark:bg-slate-900">
         <UserContext.Provider value={data?.user}>

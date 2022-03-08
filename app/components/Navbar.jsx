@@ -1,13 +1,26 @@
-import { useState} from "react"
+import { useState, useEffect} from "react"
 import { Link } from "remix"
 import{ VscMenu, VscClose} from 'react-icons/vsc'
 import NavDropDown from './NavDropDown'
 import {FaRegLightbulb} from 'react-icons/fa'
-import clsx from "clsx"
+import NavList from './NavList'
 
 
 function Navbar({darkMode, shows}) {
   const [menuOpen, setMenuOpen] = useState(false)
+
+  useEffect(() => {
+    window.addEventListener('resize', () => {
+      if (window.innerWidth >= 1023) {
+        setMenuOpen(false)
+      }
+    }) 
+  
+    return window.removeEventListener('resize', () => {
+      if (window.innerWidth <= 1023) {
+        setMenuOpen(false)
+      }})
+  },[])
 
   return (
     <>
@@ -30,11 +43,7 @@ function Navbar({darkMode, shows}) {
           </li>
         </ul>
 
-        <ul className="hidden lg:flex">
-          <li>One</li>
-          <li>Two</li>
-          <li>Three</li>
-        </ul>
+        <NavList darkMode={darkMode} shows={shows} />
       </nav>
       <NavDropDown shows={shows} isOpen={menuOpen} onNavigate={() => setMenuOpen(!menuOpen)} darkMode={darkMode}/> 
     </>

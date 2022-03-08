@@ -7,16 +7,44 @@ import {RiMovie2Line} from 'react-icons/ri'
 import ShowDisplayCard from './ShowDisplayCard'
 import SubMenu from './Submenu'
 
+
 function NavDropDown({isOpen, onNavigate, shows}) {
+  const placeholders = [
+    "Search by title",
+    "Search by focus",
+    "Search by age",
+  ]
+  
   const transition = useTransition()
   const userContext = useContext(UserContext)
   const [filteredTitles, setFilteredTitles] = useState([])
   const [showSubMenu, setShowSubMenu] = useState(false)
+  const [placeholderIdx, setPlaceholderIdx] = useState(0)
   const state = transition.state === "loading" ? "loading" : 'idle'
+  
   const navRef = useRef()
   const listRef = useRef()
   const inputRef = useRef()
+  
+useEffect(() => {
 
+  let interval = setInterval(() => {
+    setPlaceholderIdx(idx => (idx + 1) % placeholders.length)
+  },3500)
+  
+  if (isOpen) {
+    document.getElementById('revealer').animate([
+      {transform: 'translateX(0%)'},
+      {transform: 'translateX(75%)'},
+      {transform: 'translateX(0%)'},      
+    ], {
+      duration: 3500, iterations: Infinity, 
+    })
+  }
+
+    return () => clearInterval(interval)
+  }, [isOpen])
+  
   useEffect(() => {
     navRef.current.scrollTop = 0
    
@@ -62,17 +90,21 @@ function NavDropDown({isOpen, onNavigate, shows}) {
   }
 
   return (
-    <div ref={navRef} className={`${filteredTitles.length && 'overflow-y-scroll'} -translate-y-full h-full fixed z-40 duration-500 top-0 flex-col ease-out w-full p-5 bg-white dark:bg-slate-800`}>
+    <div ref={navRef} className={`${filteredTitles.length && 'overflow-y-auto'} -translate-y-full h-full fixed z-40 duration-500 top-0 flex-col ease-out w-full p-5 bg-white dark:bg-slate-800`}>
       <ul ref={listRef} className="w-full px-4 mt-16 translate-y-20 dark:text-white">
       <li className="relative mb-7">
       <CgSearch className="absolute text-2xl text-black/[.5] top-1/4 left-5" />
       <input 
         type='text'
         ref={inputRef} 
-        className="w-full h-10 pl-12 text-black placeholder-black/[.8] rounded-full outline-none bg-stone-200"
-        placeholder="Search"
+        className="w-full h-10 px-12 text-black placeholder-black/[.8] rounded-full outline-none bg-stone-200"
+        placeholder={placeholders[placeholderIdx]}
         onChange={filterShows} 
       />
+      <span 
+        id="revealer" 
+        style={{opacity: inputRef.current?.value ? 0 : 1}} 
+        className='absolute top-0 block w-1/3 h-10 rounded-full left-32 bg-stone-200'></span>
     </li>
         <li title="Dashboard" className="pr-3 opacity-0">
           <Link to='/dashboard' onClick={onNavigate} className="flex items-center justify-between py-3 border-b cursor-pointer">
