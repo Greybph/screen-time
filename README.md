@@ -1,6 +1,8 @@
 # Screen Time
 
-This is an app I made to help parents optimize the TV shows that their kids watch.
+This is the first app I made with Remix.
+
+The point of the app is to help parents optimize the TV shows that their children watch.
 
 You can create a profile for your child and select the learning goals that they are currently working on.
 
